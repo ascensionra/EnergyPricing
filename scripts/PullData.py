@@ -1,14 +1,15 @@
 #############################################################
 # Edouard TALLENT @TaGoMa . Tech, November, 2014            #
 # EIA data interface                                        #
-# QuantCorner @ https://quantcorner.wordpress.com            #
+# QuantCorner @ https://quantcorner.wordpress.com           #
 #############################################################
 
 import json
 import numpy as np
 import pandas as pd
-from urllib import request
+import urllib.request as request
 from urllib.error import URLError, HTTPError
+import pprint
 
 class EIAgov(object):
     def __init__(self, token, series):
@@ -54,14 +55,21 @@ class EIAgov(object):
 
     def GetData(self):
         # Deal with the date series                       
+        ''' The pretty print stuff is added my jm for debugging
+        pp = pprint.PrettyPrinter(indent=4)
+        '''
         date_ = self.Raw(self.series[0])        
+        '''
+        pp.pprint(date_)
+        '''
         date_series = date_['series'][0]['data']
         endi = len(date_series) # or len(date_['series'][0]['data'])
+        
         #print('end: ', end)
         date = []
         for i in range (endi):
             date.append(date_series[i][0])
-
+				
         print(len(self.series))
        
         # Create dataframe
@@ -70,6 +78,11 @@ class EIAgov(object):
 
         # Deal with data
         lenj = len(self.series)
+        '''
+         It looks like orig. developer used a pseudo head/tail to select first
+         and last 30 lines of output. This should be adjusted to obtain
+         full output for the dataframe that is returned
+        '''
         for j in range (lenj):
             data_ = self.Raw(self.series[j])
             data_series = data_['series'][0]['data']
@@ -82,32 +95,33 @@ class EIAgov(object):
         return df
 
 if __name__ == '__main__':
-    tok = '[your token]'
+    tok = '88465F906011215AB185A6E2A1D3994B'
         
     # Electricity - Monthly data
-    test1 = ['ELEC.REV.AL-ALL.M', 'ELEC.REV.AK-ALL.M', 'ELEC.REV.CA-ALL.M']
-    data = EIAgov(tok, test1)
-    print(data.GetData())
-    
     '''
+    test = ['ELEC.REV.AL-ALL.M', 'ELEC.REV.AK-ALL.M', 'ELEC.REV.CA-ALL.M']
+    #test = ['PET.RWTC.D']
+    data = EIAgov(tok, test)
+    print(data.GetData())
+    ''' 
+    
     # Petroleum and products imports - quarterly data
     test2 = ['STEO.RNNIPUS.Q', 'STEO.PAIMPORT.Q', 'STEO.UONIPUS.Q']
     data = EIAgov(tok, test2)
     print(data.GetData())
-    '''
 
     '''
     # Petroleum and products supply - annual data
     test3 = ['STEO.DFPSPP1.A', 'STEO.DFPSPP2.A', 'STEO.DFPSPP3.A', 'STEO.DFPSPP4.A', 'STEO.DFPSPP5.A']
     data = EIAgov(tok, test3)
     print(data.GetData())
-
+    '''
+    ''' 
     # US ethanol output - weekly data
     test4 = ['PET.W_EPOOXE_YOP_NUS_MBBLD.W', 'PET.W_EPOOXE_YOP_R10_MBBLD.W', 'PET.W_EPOOXE_YOP_R20_MBBLD.W', 'PET.W_EPOOXE_YOP_R30_MBBLD.W', 'PET.W_EPOOXE_YOP_R40_MBBLD.W', 'PET.W_EPOOXE_YOP_R50_MBBLD.W']
     data = EIAgov(tok, test4)
     print(data.GetData())
-    '''
-
+    '''	
 
 '''
        Date  ELEC.REV.AL-ALL.M  ELEC.REV.AK-ALL.M  ELEC.REV.CA-ALL.M
