@@ -1,7 +1,9 @@
 #############################################################
 # Edouard TALLENT @TaGoMa . Tech, November, 2014            #
 # EIA data interface                                        #
-# QuantCorner @ https://quantcorner.wordpress.com            #
+# QuantCorner @ https://quantcorner.wordpress.com           #
+#                                                           #
+# Used by Jared McArthur for EnergyPricing data mining proj #
 #############################################################
 
 import json
