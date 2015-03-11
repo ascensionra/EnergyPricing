@@ -2,6 +2,10 @@
 # Edouard TALLENT @TaGoMa . Tech, November, 2014            #
 # EIA data interface                                        #
 # QuantCorner @ https://quantcorner.wordpress.com           #
+#																														#
+# Modified: Jared McArthur																	#
+# Date:     03/11/2015																			#
+#																														#
 #############################################################
 
 import json
