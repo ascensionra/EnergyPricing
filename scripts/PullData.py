@@ -59,13 +59,13 @@ class EIAgov(object):
 
     def GetData(self):
         # Deal with the date series                       
-        ''' The pretty print stuff is added my jm for debugging
+        # The pretty print stuff is added my jm for debugging
         pp = pprint.PrettyPrinter(indent=4)
-        '''
+        
         date_ = self.Raw(self.series[0])        
-        '''
+        
         pp.pprint(date_)
-        '''
+        
         date_series = date_['series'][0]['data']
         endi = len(date_series) # or len(date_['series'][0]['data'])
         
@@ -112,6 +112,7 @@ if __name__ == '__main__':
     # Petroleum and products imports - quarterly data
     test2 = ['STEO.RNNIPUS.Q', 'STEO.PAIMPORT.Q', 'STEO.UONIPUS.Q']
     data = EIAgov(tok, test2)
+    #data.GetData()
     print(data.GetData())
 
     '''

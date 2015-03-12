@@ -63,20 +63,35 @@ class EIAgov(object):
         # The pretty print stuff is added my jm for debugging
         pp = pprint.PrettyPrinter(indent=4)
         
+        # date_ is a JSON object at this point
         date_ = self.Raw(self.series[0])        
         
 #        pp.pprint(date_)
         
         date_series = date_['series'][0]['data']
+        pp.pprint(date_series)
         endi = len(date_series) # or len(date_['series'][0]['data'])
         
         #print('end: ', end)
         date = []
         for i in range (endi):
-            date.append(date_series[i][0])
+           date.append(date_series[i][0])
 				
-        print(len(self.series))
-        return date
+#        print(len(self.series))
+        #self.PrintData(date_)
+        return date_
+
+    def PrintData(self,data):
+        # Iterate over json object to print data
+        # Primarily for debugging, but methodology
+        # can be used to generate SQL INSERT statements
+
+        print "\t%s\t%s" % ('Data',data['request']['series_id'])
+        n = 1
+
+        #for i in data['series'][0]['data']:
+        #  print(n,"\t",i[0],"\t",i[1])
+        #  n += 1
 '''       
         # Create dataframe
         df = pd.DataFrame(data=date)
@@ -84,13 +99,11 @@ class EIAgov(object):
 
         # Deal with data
         lenj = len(self.series)
-'''
-'''
+
          It looks like orig. developer used a pseudo head/tail to select first
          and last 30 lines of output. This should be adjusted to obtain
          full output for the dataframe that is returned
-'''
-'''
+
         for j in range (lenj):
             data_ = self.Raw(self.series[j])
             data_series = data_['series'][0]['data']
@@ -102,6 +115,7 @@ class EIAgov(object):
         
         return df
 '''
+
 if __name__ == '__main__':
     tok = '88465F906011215AB185A6E2A1D3994B'
         
@@ -116,8 +130,8 @@ if __name__ == '__main__':
     # Petroleum and products imports - quarterly data
     test2 = ['STEO.RNNIPUS.Q', 'STEO.PAIMPORT.Q', 'STEO.UONIPUS.Q']
     data = EIAgov(tok, test2)
-    #data.GetData()
-    print(data.GetData())
+    data.GetData()
+    #print(data.GetData())
 
     '''
     # Petroleum and products supply - annual data
