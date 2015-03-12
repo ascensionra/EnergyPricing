@@ -69,7 +69,7 @@ class EIAgov(object):
 #        pp.pprint(date_)
         
         date_series = date_['series'][0]['data']
-        pp.pprint(date_series)
+#        pp.pprint(date_series)
         endi = len(date_series) # or len(date_['series'][0]['data'])
         
         #print('end: ', end)
@@ -78,7 +78,7 @@ class EIAgov(object):
            date.append(date_series[i][0])
 				
 #        print(len(self.series))
-        #self.PrintData(date_)
+        self.PrintData(date_)
         return date_
 
     def PrintData(self,data):
@@ -89,9 +89,10 @@ class EIAgov(object):
         print "\t%s\t%s" % ('Data',data['request']['series_id'])
         n = 1
 
-        #for i in data['series'][0]['data']:
-        #  print(n,"\t",i[0],"\t",i[1])
-        #  n += 1
+        for i in data['series'][0]['data']:
+          print "%d\t%s\t%.13f" % (n,i[0],i[1])
+          #print(n,"\t",i[0],"\t",i[1])
+          n += 1
 '''       
         # Create dataframe
         df = pd.DataFrame(data=date)
