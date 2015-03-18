@@ -82,9 +82,10 @@ class EIAgov(object):
     def PrintData(self):
         # Create an appropriate filename and generate SQL INSERT statements for that series.
          f = open("./output/"+self.data['series'][0]['series_id']+".sql","w")
+         print "Generating INSERT statements for %s" % (self.data['series'][0]['series_id'])
          for i in self.data['series'][0]['data']:
            line = "INSERT INTO %s (DATE,PRICE) VALUES (%s, %s)\n" %(self.data['series'][0]['series_id'],i[0],i[1])
-           print line
+           #print line
            f.write(line)
          f.close()
 
