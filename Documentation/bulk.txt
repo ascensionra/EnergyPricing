@@ -1,0 +1,24 @@
+ELEC
+http://api.eia.gov/bulk/ELEC.zip
+Aggregate national, state, and plant-level electricity generation statistics, including fuel quality and consumption, for grid-connected plants with nameplate capacity of 1 megawatt or greater
+SEDS
+http://api.eia.gov/bulk/SEDS.zip
+State and national energy production and consumption, using survey and estimates to create comprehensive state energy statistics and flows
+PET
+http://api.eia.gov/bulk/PET.zip
+Statistics of U.S. petroleum and other liquid fuel production, imports, refining, exports, prices, consumption, stocks, and reserves
+STEO
+http://api.eia.gov/bulk/STEO.zip
+None
+NG
+http://api.eia.gov/bulk/NG.zip
+Statistics of U.S. natural gas production, imports, exploration, pipelines, exports, prices, consumption, stocks, and reserves
+COAL
+http://api.eia.gov/bulk/COAL.zip
+Aggregate national, state, and mine-level coal production statistics, including imports and exports, reciepts of coal at electric power plants, consumption and quality, market sales, reserves, and productive capacity
+AEO
+http://api.eia.gov/bulk/AEO.zip
+None
+PET_IMPORTS
+http://api.eia.gov/bulk/PET_IMPORTS.zip
+Aggregate national, PADD, state, city, port, and refinery petroleum imports data for various grades of crude oil and country of origin.
