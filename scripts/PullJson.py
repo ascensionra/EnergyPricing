@@ -8,7 +8,7 @@ import json
 from urllib import urlopen
 from urllib2 import Request, urlopen
 from urllib2 import URLError, HTTPError
-import us
+#import us
 import os
 import pprint
 
