@@ -81,7 +81,7 @@ class EIAgov(object):
 
     def PrintData(self):
         # Create an appropriate filename and generate SQL INSERT statements for that series.
-         f = open("./output/tmp/"+self.data['series'][0]['series_id']+".sql","w")
+         f = open("./output/"+self.data['series'][0]['series_id']+".sql","w")
          for i in self.data['series'][0]['data']:
            line = "INSERT INTO %s (DATE,PRICE) VALUES (%s, %s)\n" %(self.data['series'][0]['series_id'],i[0],i[1])
            print line
@@ -101,8 +101,8 @@ def generateOutfiles():
 # use list of abbreviations and generate a filename/series ID for
 # every state. 
 # TODO: Generalize this function
-  if not os.path.exists("./output/tmp"):
-    os.makedirs("./output/tmp")
+  if not os.path.exists("./output"):
+    os.makedirs("./output")
   abb = buildLists()
 
   names = []
@@ -116,16 +116,21 @@ def generateOutfiles():
 
 if __name__ == '__main__':
     tok = '88465F906011215AB185A6E2A1D3994B'
-        
+
+    # Crude oil production
+    prod = ['PET.MCRFPAL2.M'] # this is a perfect set to generalize the filename generator
+    data = EIAgov(tok,prod)
+    data.GetData()
+
+'''        
     # Crude spot prices - daily data
     crude = ['PET.RWTC.D', 'PET.RBRTE.D']
     data = EIAgov(tok, crude)
     data.GetData()
-'''
+
     # Electricity - ALL Monthly data
     
     #test = ['ELEC.REV.AL-ALL.M', 'ELEC.REV.AK-ALL.M', 'ELEC.REV.CA-ALL.M']
-    #test = ['PET.RWTC.D']
     series = generateOutfiles()
     data = EIAgov(tok, generateOutfiles())
     data.GetData()
