@@ -92,8 +92,11 @@ class EIAgov(object):
 def buildLists():
 # create a list of state abbreviations for series id and filenames
   abb = []
+  abb = [u'AL', u'AK', u'AZ', u'AR', u'CA', u'CO', u'CT', u'DE', u'DC', u'FL', u'GA', u'HI', u'ID', u'IL', u'IN', u'IA', u'KS', u'KY', u'LA', u'ME', u'MD', u'MA', u'MI', u'MN', u'MS', u'MO', u'MT', u'NE', u'NV', u'NH', u'NJ', u'NM', u'NY', u'NC', u'ND', u'OH', u'OK', u'OR', u'PA', u'RI', u'SC', u'SD', u'TN', u'TX', u'UT', u'VT', u'VA', u'WA', u'WV', u'WI', u'WY']
+  ''' 
   for i in us.states.STATES:
     abb.append(i.abbr)
+  '''
   abb.remove('DC')
   return abb
 
@@ -117,17 +120,18 @@ def generateOutfiles():
 if __name__ == '__main__':
     tok = '88465F906011215AB185A6E2A1D3994B'
 
+    '''
     # Crude oil production
     prod = ['PET.MCRFPAL2.M'] # this is a perfect set to generalize the filename generator
     data = EIAgov(tok,prod)
     data.GetData()
 
-'''        
+       
     # Crude spot prices - daily data
     crude = ['PET.RWTC.D', 'PET.RBRTE.D']
     data = EIAgov(tok, crude)
     data.GetData()
-
+    '''
     # Electricity - ALL Monthly data
     
     #test = ['ELEC.REV.AL-ALL.M', 'ELEC.REV.AK-ALL.M', 'ELEC.REV.CA-ALL.M']
@@ -136,7 +140,7 @@ if __name__ == '__main__':
     data.GetData()
     #print(data.GetData())
      
-    
+    '''    
     # Petroleum and products imports - quarterly data
     test2 = ['STEO.RNNIPUS.Q', 'STEO.PAIMPORT.Q', 'STEO.UONIPUS.Q']
     data = EIAgov(tok, test2)
@@ -156,4 +160,4 @@ if __name__ == '__main__':
     data = EIAgov(tok, test4)
     data.GetData()
     #print(data.GetData())
-'''    	
+    '''    	
