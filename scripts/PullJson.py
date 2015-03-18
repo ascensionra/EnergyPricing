@@ -1,19 +1,15 @@
 #############################################################
-# Edouard TALLENT @TaGoMa . Tech, November, 2014
-# EIA data interface
-# QuantCorner @ https://quantcorner.wordpress.com
-#
-# Modified: Jared McArthur
+# Author: Jared McArthur
 # Date:     03/11/2015	
 #
 #############################################################
 
 import json
-#import numpy as np
-#import pandas as pd
 from urllib import urlopen
 from urllib2 import Request, urlopen
 from urllib2 import URLError, HTTPError
+import us
+import os
 import pprint
 
 class EIAgov(object):
@@ -65,70 +61,72 @@ class EIAgov(object):
         pp = pprint.PrettyPrinter(indent=4)
         
         # date_ is a JSON object at this point
-        date_ = self.Raw(self.series[0])        
-        self.data = date_
+        for i in self.series:
+          #print i
+          #date_ = self.Raw(self.series[0])        
+          date_ = self.Raw(i)
+          self.data = date_
+          #print "Printing self.data:\n",self.data['series'][0]['series_id']
         
-#        pp.pprint(date_)
+          date_series = date_['series'][0]['data']
+          endi = len(date_series) # or len(date_['series'][0]['data'])
         
-        date_series = date_['series'][0]['data']
-#        pp.pprint(date_series)
-        endi = len(date_series) # or len(date_['series'][0]['data'])
-        
-        #print('end: ', end)
-        date = []
-        for i in range (endi):
-           date.append(date_series[i][0])
+          date = []
+          for j in range (endi):
+             date.append(date_series[j][0])
+          #print "Printing date:\n",date
 				
-#        print(len(self.series))
-        self.PrintData()
-        return date_
+          self.PrintData()
+#        return date_
 
     def PrintData(self):
         # Iterate over json object to print data
         # Primarily for debugging, but methodology
         # can be used to generate SQL INSERT statements
 
-        print "\t%s\t%s" % ('Data',self.data['request']['series_id'])
-        n = 1
+        # A list of series can be accepted. We will 
+        # iterate over the list, create an appropriate filename
+        # and generate SQL INSERT statements for that series.
+#        for b in self.series:
+#         print "self.data['series'][0]['series_id']: %s" % (self.data['series'][0]['series_id'])
 
-        for i in self.data['series'][0]['data']:
-          print "%d\t%s\t%.13f" % (n,i[0],i[1])
-          #print(n,"\t",i[0],"\t",i[1])
-          n += 1
-'''       
-        # Create dataframe
-        df = pd.DataFrame(data=date)
-        df.columns = ['Date']
+         f = open("./output/tmp/"+self.data['series'][0]['series_id']+".sql","w")
+         for i in self.data['series'][0]['data']:
+           line = "INSERT INTO %s (DATE,PRICE) VALUES (%s, %s)\n" %(self.data['series'][0]['series_id'],i[0],i[1])
+           print line
+           f.write(line)
+         f.close()
 
-        # Deal with data
-        lenj = len(self.series)
 
-         It looks like orig. developer used a pseudo head/tail to select first
-         and last 30 lines of output. This should be adjusted to obtain
-         full output for the dataframe that is returned
+def buildLists():
+  abb = []
+  for i in us.states.STATES:
+    abb.append(i.abbr)
+  abb.remove('DC')
+  return abb
 
-        for j in range (lenj):
-            data_ = self.Raw(self.series[j])
-            data_series = data_['series'][0]['data']
-            data = []
-            endk = len(date_series)         
-            for k in range (endk):
-                data.append(data_series[k][1])
-            df[self.series[j]] = data
-        
-        return df
-'''
+def generateOutfiles():
+  if not os.path.exists("./output/tmp"):
+    os.makedirs("./output/tmp")
+  abb = buildLists()
+
+  names = []
+  for a in abb:
+    names.append("ELEC.REV." + a + "-ALL.M")
+  return names
 
 if __name__ == '__main__':
     tok = '88465F906011215AB185A6E2A1D3994B'
         
-    # Electricity - Monthly data
-    '''
-    test = ['ELEC.REV.AL-ALL.M', 'ELEC.REV.AK-ALL.M', 'ELEC.REV.CA-ALL.M']
+    # Electricity - ALL Monthly data
+    
+    #test = ['ELEC.REV.AL-ALL.M', 'ELEC.REV.AK-ALL.M', 'ELEC.REV.CA-ALL.M']
     #test = ['PET.RWTC.D']
-    data = EIAgov(tok, test)
-    print(data.GetData())
-    ''' 
+    series = generateOutfiles()
+    data = EIAgov(tok, generateOutfiles())
+    data.GetData()
+    #print(data.GetData())
+     
     
     # Petroleum and products imports - quarterly data
     test2 = ['STEO.RNNIPUS.Q', 'STEO.PAIMPORT.Q', 'STEO.UONIPUS.Q']
@@ -136,15 +134,17 @@ if __name__ == '__main__':
     data.GetData()
     #print(data.GetData())
 
-    '''
+    
     # Petroleum and products supply - annual data
     test3 = ['STEO.DFPSPP1.A', 'STEO.DFPSPP2.A', 'STEO.DFPSPP3.A', 'STEO.DFPSPP4.A', 'STEO.DFPSPP5.A']
     data = EIAgov(tok, test3)
-    print(data.GetData())
-    '''
-    ''' 
+    data.GetData()
+    #print(data.GetData())
+    
+     
     # US ethanol output - weekly data
     test4 = ['PET.W_EPOOXE_YOP_NUS_MBBLD.W', 'PET.W_EPOOXE_YOP_R10_MBBLD.W', 'PET.W_EPOOXE_YOP_R20_MBBLD.W', 'PET.W_EPOOXE_YOP_R30_MBBLD.W', 'PET.W_EPOOXE_YOP_R40_MBBLD.W', 'PET.W_EPOOXE_YOP_R50_MBBLD.W']
     data = EIAgov(tok, test4)
-    print(data.GetData())
-    '''	
+    data.GetData()
+    #print(data.GetData())
+    	
