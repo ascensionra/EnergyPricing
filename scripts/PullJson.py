@@ -80,16 +80,7 @@ class EIAgov(object):
 #        return date_
 
     def PrintData(self):
-        # Iterate over json object to print data
-        # Primarily for debugging, but methodology
-        # can be used to generate SQL INSERT statements
-
-        # A list of series can be accepted. We will 
-        # iterate over the list, create an appropriate filename
-        # and generate SQL INSERT statements for that series.
-#        for b in self.series:
-#         print "self.data['series'][0]['series_id']: %s" % (self.data['series'][0]['series_id'])
-
+        # Create an appropriate filename and generate SQL INSERT statements for that series.
          f = open("./output/tmp/"+self.data['series'][0]['series_id']+".sql","w")
          for i in self.data['series'][0]['data']:
            line = "INSERT INTO %s (DATE,PRICE) VALUES (%s, %s)\n" %(self.data['series'][0]['series_id'],i[0],i[1])
@@ -99,6 +90,7 @@ class EIAgov(object):
 
 
 def buildLists():
+# create a list of state abbreviations for series id and filenames
   abb = []
   for i in us.states.STATES:
     abb.append(i.abbr)
@@ -106,6 +98,9 @@ def buildLists():
   return abb
 
 def generateOutfiles():
+# use list of abbreviations and generate a filename/series ID for
+# every state. 
+# TODO: Generalize this function
   if not os.path.exists("./output/tmp"):
     os.makedirs("./output/tmp")
   abb = buildLists()
@@ -115,9 +110,18 @@ def generateOutfiles():
     names.append("ELEC.REV." + a + "-ALL.M")
   return names
 
+############################################################
+# Main program starts below                                #
+############################################################
+
 if __name__ == '__main__':
     tok = '88465F906011215AB185A6E2A1D3994B'
         
+    # Crude spot prices - daily data
+    crude = ['PET.RWTC.D', 'PET.RBRTE.D']
+    data = EIAgov(tok, crude)
+    data.GetData()
+'''
     # Electricity - ALL Monthly data
     
     #test = ['ELEC.REV.AL-ALL.M', 'ELEC.REV.AK-ALL.M', 'ELEC.REV.CA-ALL.M']
@@ -147,4 +151,4 @@ if __name__ == '__main__':
     data = EIAgov(tok, test4)
     data.GetData()
     #print(data.GetData())
-    	
+'''    	
