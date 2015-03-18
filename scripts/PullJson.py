@@ -30,6 +30,7 @@ class EIAgov(object):
         '''
         self.token = token
         self.series = series
+        self.data = None
 
     '''
     def __repr__(self):
@@ -65,6 +66,7 @@ class EIAgov(object):
         
         # date_ is a JSON object at this point
         date_ = self.Raw(self.series[0])        
+        self.data = date_
         
 #        pp.pprint(date_)
         
@@ -78,18 +80,18 @@ class EIAgov(object):
            date.append(date_series[i][0])
 				
 #        print(len(self.series))
-        self.PrintData(date_)
+        self.PrintData()
         return date_
 
-    def PrintData(self,data):
+    def PrintData(self):
         # Iterate over json object to print data
         # Primarily for debugging, but methodology
         # can be used to generate SQL INSERT statements
 
-        print "\t%s\t%s" % ('Data',data['request']['series_id'])
+        print "\t%s\t%s" % ('Data',self.data['request']['series_id'])
         n = 1
 
-        for i in data['series'][0]['data']:
+        for i in self.data['series'][0]['data']:
           print "%d\t%s\t%.13f" % (n,i[0],i[1])
           #print(n,"\t",i[0],"\t",i[1])
           n += 1
