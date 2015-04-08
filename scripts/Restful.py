@@ -10,5 +10,5 @@ bigurl = url + urllib.urlencode(parameters) + urllib.urlencode(headers)
 print bigurl
 
 
-resp = urllib.urlopen(bigurl)
-print resp.getcode()
+#resp = urllib.urlopen(bigurl)
+#print resp.getcode()
