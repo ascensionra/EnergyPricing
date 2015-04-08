@@ -7,3 +7,8 @@
 # TEMP FILES
 .tmp
 .swp
+
+# OUTPUT FILES
+.txt
+.json
+.sql
