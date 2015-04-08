@@ -1,0 +1,47 @@
+INSERT INTO PET_SERIES() (SERIES_ID,DESCRIPTION,UM) VALUES
+
+"INSERT INTO PET_SERIES VALUES (q'[%s]',q'[%s]',q'[%s]');\n" % (line[0],line[1],line[2])
+
+urllib2.urlopen(urllib.urlencode('129.152.144.84:5001/rest/native/?query="INSERT INTO PET_SERIES VALUES (q'[%s]',q'[%s]',q'[%s]');\n" % (line[0],line[1],line[2])"'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521/PDB1.usuniversi01134.oraclecloud.internal',USER='cs370_jsm3287',PASS='orcl',MODE='native_mode',MODEL='model',returnDimensions = 'False',returnFor = 'JSON', d=i[0], v=i[1]),verbose = TRUE)
+
+getURL(URLencode('129.152.144.84:5001/rest/native/?query="insert into emp(date, value) values("d", "v")"'),
+
+httpheader=c(
+'DB':'jdbc:oracle:thin:@129.152.144.84:1521/PDB1.usuniversi01134.oraclecloud.internal','USER':'cs370_asl456','PASS':'orcl','MODE':'native_mode','MODEL':'model','returnDimensions':'False','returnFor':'JSON', d:i[0], v:i[1]
+),
+verbose:TRUE)
+
+{'query':'"INSERT INTO PET_SERIES(NAME,DESCRIPTION,SERIES_ID) VALUES ("a","b","c")"','httpheader':'c({'DB':'jdbc:oracle:thin:@129.152.144.84:1521/PDB1.usuniversi01134.oraclecloud.internal','USER':'cs370_asl456','PASS':'orcl','MODE':'native_mode','MODEL':'model','returnDimensions':'False','returnFor':'JSON', 'd':'i[0]','v':'i[1]'})','verbose':'TRUE'}
+
+
+'httpheader='"c(DB='jdbc:oracle:thin:@129.152.144.84:1521/PDB1.usuniversi01134.oraclecloud.internal',USER='cs370_jsm3287',PASS='orcl',MODE='native_mode',MODEL='model',returnDimensions = 'False',returnFor = 'JSON', d=i[0], v=i[1])"'
+
+
+'query'='INSERT INTO PET_SERIES(NAME,DESCRIPTION,SERIES_ID) VALUES ("a","b","c")','httpheader'='c(DB=jdbc:oracle:thin:@129.152.144.84:1521/PDB1.usuniversi01134.oraclecloud.internal,USER=cs370_jsm3287,PASS=orcl,MODE=native_mode,MODEL=model,returnDimensions=False,returnFor=JSON',d=i[0],v=i[1])','verbose'='TRUE'
+
+'query':'INSERT INTO PET_SERIES(NAME,DESCRIPTION,SERIES_ID) VALUES ("a","b","c")','httpheader':'(DB="jdbc:oracle:thin:@129.152.144.84:1521/PDB1.usuniversi01134.oraclecloud.internal",USER=cs370_jsm3287,PASS=orcl,MODE=native_mode,MODEL=model,returnDimensions=False,returnFor=JSON,d=i[0],v=i[1])','verbose':'TRUE'
+
+headers = {'DB':jdbc:oracle:thin:@129.152.144.84:1521/PDB1.usuniversi01134.oraclecloud.internal','USER':'cs370_jsm3287','PASS':'orcl','MODE':'native_mode','MODEL':'model','returnDimensions':'False','returnFor':'JSON','d':'i[0]','v':'i[1]' }
+
+parameters = { 'query':'INSERT INTO PET_SERIES(NAME,DESCRIPTION,SERIES_ID) VALUES ("a","b","c")','verbose':'TRUE' }
+
+
+***********************************************************************
+128.83.138.178
+
+url = "http://129.152.144.84:5001/rest/native/?query=\"INSERT INTO PET_SERIES(SERIES_ID,DESCRIPTION,UM) VALUES ('a','b','c')\""
+
+url1="http://129.152.144.84:5001/rest/native/?query=\"INSERT INTO PET_SERIES(SERIES_ID,DESCRIPTION,UM) VALUES (" + str(i) + "," + str(i+1) + "," + str(i+2)+ ")\""
+
+url = "http://129.152.144.84:5001/rest/native/?query=\"INSERT INTO LAST_UPDATE(SERIES,UPDATED) VALUES ('TEST_SERIES_X','2015-04-08 00:00:00')\""
+url2= "http://129.152.144.84:5001/rest/native/?query=\"SELECT * FROM LAST_UPDATE\""
+
+parameters = { 'verbose':'TRUE' }
+
+h={'DB':'jdbc:oracle:thin:@129.152.144.84:1521/PDB1.usuniversi01134.oraclecloud.internal','USER':'cs370_jsm3287','PASS':'orcl','MODE':'native_mode','MODEL':'model','returnDimensions':'False','returnFor':'JSON' }
+
+h={'DB':'jdbc:oracle:thin:@129.152.144.84:1521/PDB1.usuniversi01134.oraclecloud.internal','USER':'cs370_jsm3287','PASS':'orcl','MODE':'native_mode','MODEL':'model' }
+
+h2={'DB':'jdbc:oracle:thin:@129.152.144.84:1521/PDB1.usuniversi01134.oraclecloud.internal','USER':'DV_ORDERS','PASS':'orcl','MODE':'native_mode','MODEL':'model','returnDimensions':'False','returnFor':'JSON' }
+
+'http://api.eia.gov/series/?api_key=88465F906011215AB185A6E2A1D3994B&series_id=' + series.upper()
