@@ -19,14 +19,13 @@ def getChildCategories(r):
 	parent category """
 	return r.json()['category']['childcategories']
 
-def getList(g):
+def getList(g,ga):
 	""" Extracts the weekly price data from the list
-	obtained by getChildSeries(). Appends to 'global' array ga[] that
-	needs to be delcared prior to calling """
-	#global ga[:]=[]
-	ga=[]
+	obtained by getChildSeries()."""
+	ga[:] = []
+
 	for i in g:
-		if i ['series_id'].split('.')[-1] == 'W':
+		if i['series_id'].split('.')[-1] in ['D','W']:
 			ga.append({i['name']:i['series_id']})
 	return ga
 
@@ -47,11 +46,14 @@ Use case:
 
 	import series as s
 	baseurl='http://api.eia.gov/category/?api_key=YOUR_API_KEY_HERE&category_id='
+
+	# Make usre baseurl uses category or series where appropriate based on EIA API template
+
 	category=241020
 	r=s.getCategories(baseurl,category)
 	g=s.getChildCategories(r)
 	for i in g:
-		s.setJson(s.getList(s.getChildSeries(getSeries(baseurl,i['category_id']))))
+		s.setJson(s.getList(s.getChildSeries(s.getSeries(baseurl,i['category_id']))))
 
 	OR
 
