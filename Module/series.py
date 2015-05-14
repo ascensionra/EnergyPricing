@@ -1,3 +1,6 @@
+""" For these functions, baseurl is the EIA API
+root URL without category or series parameters, i.e.
+http://api.eia.gov/category/?api_key=YOUR_API_KEY_HERE """
 import json,requests
 
 def getSeries(baseurl,category):
