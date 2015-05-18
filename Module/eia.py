@@ -1,5 +1,6 @@
 """ This module is for using the EIA API for accessing
 data series """
+#TODO: fix module so it can be deployed in a working Python environment
 import requests, json, sys
 
 glbUrl = 'http://129.152.144.84:5001/rest/native/?query='
@@ -16,11 +17,11 @@ and returns the standard EIA response object """
 	url = glbUrl + apiKey + '&series_id=' + ser.upper()
 	try:
 	 return requests.get(url).json()
-	 #return requests.get(url)
+	except requests.exceptions.RequestException,e:
+		print 'The request failed: %s' % (e)
 	except HTTPError as e:
 		print('HTTP error type.')
 		print('Error code: ', e.code)
-
 	except URLError as e:
 		print('URL type error.')
 		print('Reason: ', e.reason)
@@ -40,10 +41,40 @@ information will need to be provided. See example. """
 	"""
 
 	global glbUrl
+	alias = getAlias(series_id,header)
+	series_alias = '\"' + alias + '\"'
+	url = glbUrl + '\'CREATE TABLE ' + series_alias + ' (PRICE_DATE DATE NOT NULL, PRICE NUMBER (12,3) )\'' 
+	print 'Attempting to create table ' + series_alias + '\nUsing url ' + url
+	try:
+		return requests.get(url,headers=header)
+	except requests.exceptions.RequestException,e:
+		print 'The request failed: %s' % (e)
+	except HTTPError as e:
+		print('HTTP error type.')
+		print('Error code: ', e.code)
+	except URLError as e:
+		print('URL type error.')
+		print('Reason: ', e.reason)
+
+##############################################################################
+def getAlias(series_id,header):
+	""" Returns the alias for the series_id from the ALIASES table """
+
+	global glbUrl
 	series_id = '\"' + series_id + '\"'
-	url = glbUrl + '\'CREATE TABLE ' + series_id + ' (PRICE_DATE DATE NOT NULL, PRICE NUMBER (12,3) )\'' 
-	print 'Attempting to create table ' + series_id + '\nUsing url ' + url
-	return requests.get(url,headers=header)
+	qry = '\'SELECT ALIAS FROM ALIASES WHERE NAME = ' + series_id + '\''
+	url = glbUrl + qry
+	print 'Trying to get alias for ' + series_id + '\nUsing url ' + url
+	try:	
+		printJson(requests.get(url,headers=header))	
+	except requests.exceptions.RequestException,e:
+		print 'The request failed: %s' % (e)
+	except HTTPError as e:
+		print('HTTP error type.')
+		print('Error code: ', e.code)
+	except URLError as e:
+		print('URL type error.')
+		print('Reason: ', e.reason)
 
 ##############################################################################
 def dropTable(series_id,header):
@@ -60,7 +91,16 @@ Header with connection information will need to be provided. See example. """
 	series_id = '\"' + series_id + '\"'
 	url = glbUrl + '\'DROP TABLE ' + series_id + '\'' 
 	print 'Attempting to drop table ' + series_id + '\nUsing url ' + url
-	return requests.get(url,headers=header)
+	try:
+		return requests.get(url,headers=header)
+	except requests.exceptions.RequestException,e:
+		print 'The request failed: %s' % (e)
+	except HTTPError as e:
+		print('HTTP error type.')
+		print('Error code: ', e.code)
+	except URLError as e:
+		print('URL type error.')
+		print('Reason: ', e.reason)
 
 ##############################################################################
 def insertRecords(seriesJson,h):
@@ -96,7 +136,14 @@ Must supply headers as in createTable """
 		url2 = glbUrl.split('=')[0] + '=' + qry
 		print "\tUpdating LAST_UPDATE for %s \n using URL: \t%s" % ( seriesJson['series'][0]['series_id'],url2 )
 		requests.get(url2,headers=h)	
-
+	except requests.exceptions.RequestException,e:
+		print 'The request failed: %s' % (e)
+	except HTTPError as e:
+		print('HTTP error type.')
+		print('Error code: ', e.code)
+	except URLError as e:
+		print('URL type error.')
+		print('Reason: ', e.reason)
 	except BaseException,e:
 		print e
 		return
