@@ -129,7 +129,10 @@ def insertRecords(seriesJson,h):
 	""" Generate insert statements, and load data into table.
 Must supply headers as in createTable """
 #TODO: Create statement to update LAST_UPDATED table with newestDate
+
+# TODO: BIG ONE: Adjust so that it uses alias for the table name
 	global glbUrl
+
 	global glbCount
 	newestDate = None
 	count = 0
