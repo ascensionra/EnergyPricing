@@ -16,3 +16,7 @@
 # DEAD OR SENSITIVE FILES
 PullJson.py
 Restful.py
+pPullData.py
+
+# MODULE COMPILATIONS
+*.pyc
