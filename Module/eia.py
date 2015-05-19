@@ -10,9 +10,9 @@ glbCount = 0
 def getSeriesData(ser,apiKey):
 	""" Retrieves series data specified by 'ser'
 and returns the standard EIA response object """
-# TODO: check if table exists, and get LAST_UPDATED, the \
+# TODO: check if table exists, and get LAST_UPDATED, then \
 #		generate URL paramters/modifier to pull newer than
-#		that data
+#		that date
 #	url = 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=' + ser.upper()
 	url = glbUrl + apiKey + '&series_id=' + ser.upper()
 	try:
@@ -37,7 +37,8 @@ information will need to be provided. See example. """
 
 	""" Example header for connecting to Oracle DB 
 	head = {'DB':'jdbc:oracle:thin:@129.152.144.84:1521/PDB1.usuniversi01134.oraclecloud.internal',\
-			'USER':'username','PASS':'password','MODE':'native_mode','MODEL':'model','returnDimensions':'False','returnFor':'JSON' }
+			'USER':'username','PASS':'password','MODE':'native_mode','MODEL':'model',\
+			'returnDimensions':'False','returnFor':'JSON' }
 	"""
 
 	global glbUrl
