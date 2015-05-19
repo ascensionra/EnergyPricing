@@ -1,33 +1,28 @@
 # EnergyPricing
 Collection of datasets for aggregating into a comprehensive energy price resource
 
-PullJson.py
+Module/eia.py
 *******************************
 Written for Python 2.7
-Required python modules:
-json
-os
-urllib
-urllib2
-us
+Requires:
+  requests
+  json
+  sys
+  re
 *******************************
-How to use the script:
+How to use the module:
 *******************************
-As of now, the script will run and generate output to a relative direcotry of ./output/tmp. A list of series id
-values need to be supplied to the 'constructor', along with an API token (currently hardcoded in the script.)
+This module requires an API key for the EIA.gov datastore: http://www.eia.gov/beta/api/index.cfm
 
-There is a function to generate filenames/series id values for datasets that are available at the state level, 
-but it needs to be generalized, as it is being used for the ELEC.REV.XX-ALL.M series specifically.
+This module is written against the Oracle REST API provided by University of Texas professor Dr. Cannata, but can be modified to work with any RESTful interface. Some of the SQL statements may need to be tweaked, but they are pretty agnostic in regards to SQL platform. Primarily the createTable statements are suspect. Query quoting when building the URLs is particularly important.
 
-Use the examples to add more lists of data sources.
+This module uses the python module 'requests', so you will need to craft your headers for the particular REST interface you are coding against. See eia.py for the header structure required for the Oracle REST API this was originally intended for.
 
-TODO: Expand the script to accept a filename containing series to import.
-*******************************
-*******************************
+Some of the key uses of this 'module' are to create/empty/delete tables and insert records for a given SQL database, with enough abstraction that you only have to worry about providing the data (formatted as JSON.)
 
-Planned development
+Basically, the key usefullness is in obtaining a list of interesting series (see Module/series.py to do this in bulk,) create the table(s), and insert the records. Then, process with your favorite data analysis tool (SQL Developer, KNIME, etc.)
+
 *******************************
-Scripting to expand SQL automation by connecting to database and performing record INSERTION.
-Maintain a separate table to store 'updated' fields from datasets to prevent duplicating records. Using this in
-conjunction with PullJson.py to adjust API call to only retirieve missing data would be ideal.
+PullJson.py *DEPRECATED*
+*******************************
 
