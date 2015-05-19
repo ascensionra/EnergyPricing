@@ -119,7 +119,7 @@ def generateOutfiles():
 ############################################################
 
 if __name__ == '__main__':
-    tok = '88465F906011215AB185A6E2A1D3994B'
+    tok = 'YOUR API TOKEN HERE'
 
     '''
     # Crude oil production
