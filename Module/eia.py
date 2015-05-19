@@ -1,4 +1,4 @@
-s """ This module is for using the EIA API for accessing
+""" This module is for using the EIA API for accessing
 data series """
 #TODO: fix module so it can be deployed in a working Python environment
 import requests, json, sys, re
@@ -48,10 +48,10 @@ information will need to be provided. See example. """
 
 	global glbUrl
 	global glbCount
-	print '*****************************************************************'
+	#print '*****************************************************************'
 	alias = getAlias(series_id,header)  
 	url = glbUrl + '\'CREATE TABLE ' + alias + ' (PRICE_DATE DATE NOT NULL, PRICE NUMBER (12,3) )\'' 
-	print 'Attempting to create table ' + alias + '\nUsing url ' + url
+	#print 'Attempting to create table ' + alias + '\nUsing url ' + url
 	glbCount += 1 # this is for debugging to detect name collisions
 
 	try:
@@ -68,7 +68,7 @@ and keeps names (nominally) under 30 bytes """
 	global glbUrl
 	qry = '\"SELECT * FROM ALIASES WHERE NAME = \'' + series_id + '\'\"'
 	url = glbUrl + qry
-	print 'Trying to get alias for ' + series_id + '\nUsing url ' + url
+	#print 'Trying to get alias for ' + series_id + '\nUsing url ' + url
 
 	try:	
 		s = json.loads(re.sub(',\]',']',requests.get(url,headers=header).text))
@@ -132,7 +132,6 @@ Must supply headers as in createTable """
 
 # TODO: BIG ONE: Adjust so that it uses alias for the table name
 	global glbUrl
-
 	global glbCount
 	newestDate = None
 	count = 0
@@ -141,25 +140,30 @@ Must supply headers as in createTable """
 		for i in seriesJson['series'][0]['data']:
 			count += 1 # for debugging
 			glbCount += 1
-			print "Processing %s" % (seriesJson['series'][0]['series_id'])
-#			qry = '"""INSERT INTO "%s" (PRICE_DATE,PRICE) SELECT (TO_DATE(\'%s\',\'yyyymmdd\'),TO_NUMBER(\'%s\'))"""' \
-#% (seriesJson['series'][0]['series_id'],i[0],i[1])#,seriesJson['series'][0]['series_id'])
+			series_id = seriesJson['series'][0]['series_id']
+			series_name = seriesJson['series'][0]['name']
+			alias = getAlias(series_id,h)
+			
+			print "Processing %s" % (series_id)
+			print "\tAlias for %s: %s" % (series_id,alias)
+			
+			qry = '"INSERT INTO %s (PRICE_DATE,PRICE) SELECT (TO_DATE(\'%s\',\'yyyymmdd\'),TO_NUMBER(\'%s\'))"' \
+% (alias,i[0],i[1])#,seriesJson['series'][0]['series_id'])
+			
 			if ( i[0] > newestDate ):
 				newestDate = i[0]
-			#url = glbUrl.split('=')[0] + '=' + qry
-			url = 'http://129.152.144.84:5001/rest/native/?query="""INSERT INTO "%s" \
-(PRICE_DATE,PRICE) VALUES (TO_DATE(\'%s\',\'yyyymmdd\'),\'%s\')"""' \
-% (seriesJson['series'][0]['series_id'],i[0],i[1])
-			print "Inserting %s, %s\t\t%d\n\tUsing URL %s" % (i[0],i[1],count,url)
+			url = glbUrl + qry
+			
+			print "\tInserting %s, %s\t\t%d\n\tUsing URL %s" % (i[0],i[1],count,url)
 			requests.get(url,headers=h)
-			#if count > 10: 
-			#	break
+			if count > 10: 
+				break
 
 #TODO: Put this in its own function setLastUpdated, and create getLastUpdated
-		qry = '"""INSERT INTO LAST_UPDATE (SERIES,SERIES_NAME,UPDATED) VALUES (\'%s\',\'%s\',TO_DATE(\'%s\',\'yyyymmdd\'))"""' \
-			% (seriesJson['series'][0]['series_id'],seriesJson['series'][0]['name'],newestDate)
-		url2 = glbUrl.split('=')[0] + '=' + qry
-		print "\tUpdating LAST_UPDATE for %s \n using URL: \t%s" % ( seriesJson['series'][0]['series_id'],url2 )
+		qry = '"INSERT INTO LAST_UPDATE (SERIES,SERIES_NAME,UPDATED) VALUES (\'%s\',\'%s\',TO_DATE(\'%s\',\'yyyymmdd\'))"' \
+			% (series_id,series_name,newestDate)
+		url2 = glbUrl + qry
+		#print "Updating LAST_UPDATE for %s \n using URL: %s" % ( seriesJson['series'][0]['series_id'],url2 )
 		requests.get(url2,headers=h)	
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
