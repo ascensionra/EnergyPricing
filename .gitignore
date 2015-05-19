@@ -13,5 +13,6 @@
 .json
 .sql
 
-# DEAD FILES
+# DEAD OR SENSITIVE FILES
 PullJson.py
+Restful.py
