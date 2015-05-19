@@ -1,5 +1,5 @@
 # EnergyPricing
-Collection of datasets for aggregating into a comprehensive energy price resource
+Collection of python tools for aggregating EIA API data into a comprehensive energy price resource 
 
 Module/eia.py
 *******************************
