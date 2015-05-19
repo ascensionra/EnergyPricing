@@ -23,7 +23,7 @@ def getChildCategories(r):
 	return r.json()['category']['childcategories']
 
 def getList(g,ga):
-	""" Extracts the weekly price data from the list
+	""" Extracts the weekly and daily price data from the list
 	obtained by getChildSeries()."""
 	ga[:] = []
 
