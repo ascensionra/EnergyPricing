@@ -7,15 +7,24 @@ glbUrl = 'http://129.152.144.84:5001/rest/native/?query='
 glbCount = 0
 
 ##############################################################################
-def getSeriesData(ser,apiKey):
+def getSeriesData(ser,apiKey,**kwargs):
 	""" Retrieves series data specified by 'ser'
-and returns the standard EIA response object """
+and returns the standard EIA response object. Added **kwargs
+to parameter list to enable flexibility for the EIA API which 
+is currently in beta. Things like start and end dates can be
+passed to the query. """
 # TODO: check if table exists, and get LAST_UPDATED, then \
-#		generate URL paramters/modifier to pull newer than
-#		that date
+#		generate URL parameters/modifier to pull newer than
+#		that date. This is being implemented with the **kwargs parameter
 #	url = 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=' + ser.upper()
+	global glbUrl
 	
 	url = glbUrl + apiKey + '&series_id=' + ser.upper()
+	if kwargs is not None:
+		for key, value in kwargs.iteritems():
+			url = url + '&' + key + '=' + value
+	print 'Url: %s' % (url)
+"""
 	try:
 	 return requests.get(url).json()
 	except requests.exceptions.RequestException,e:
@@ -26,7 +35,7 @@ and returns the standard EIA response object """
 	except URLError as e:
 		print('URL type error.')
 		print('Reason: ', e.reason)
-
+"""
 ##############################################################################
 def createTable(series_id,header):
 	""" Creates a table if it does not already exits in
