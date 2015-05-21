@@ -18,6 +18,10 @@ passed to the query. """
 #		generate URL parameters/modifier to pull newer than
 #		that date. This is being implemented with the **kwargs parameter
 
+	""" This can be used to pull data in a time frame by passing
+{"start":"YYYY-MM-DD"} according to API documentation. An function call can be
+<eia.>getSeriesData(series,apiKey,**{'start':'2015-05-15'}) """
+
 	url = 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=' + ser.upper()
 	
 	if kwargs is not None:
