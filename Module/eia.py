@@ -128,9 +128,7 @@ Header with connection information will need to be provided. See example. """
 def insertRecords(seriesJson,h):
 	""" Generate insert statements, and load data into table.
 Must supply headers as in createTable """
-#TODO: Create statement to update LAST_UPDATED table with newestDate
 
-# TODO: BIG ONE: Adjust so that it uses alias for the table name
 	global glbUrl
 	global glbCount
 	newestDate = None
@@ -147,24 +145,19 @@ Must supply headers as in createTable """
 			print "Processing %s" % (series_id)
 			print "\tAlias for %s: %s" % (series_id,alias)
 			
-			qry = '"INSERT INTO %s (PRICE_DATE,PRICE) SELECT (TO_DATE(\'%s\',\'yyyymmdd\'),TO_NUMBER(\'%s\'))"' \
-% (alias,i[0],i[1])#,seriesJson['series'][0]['series_id'])
+			qry = '"""INSERT INTO %s (PRICE_DATE,PRICE) VALUES (TO_DATE(\'%s\',\'yyyymmdd\'),TO_NUMBER(\'%s\'))"""' \
+				% (alias,i[0],i[1])#,seriesJson['series'][0]['series_id'])
 			
 			if ( i[0] > newestDate ):
 				newestDate = i[0]
 			url = glbUrl + qry
 			
 			print "\tInserting %s, %s\t\t%d\n\tUsing URL %s" % (i[0],i[1],count,url)
-			requests.get(url,headers=h)
-			if count > 10: 
-				break
+			print requests.get(url,headers=h)
+			#if count > 10: 
+			#	break
+		setLastUpdated(newestDate,series_id,series_name,h)
 
-#TODO: Put this in its own function setLastUpdated, and create getLastUpdated
-		qry = '"INSERT INTO LAST_UPDATE (SERIES,SERIES_NAME,UPDATED) VALUES (\'%s\',\'%s\',TO_DATE(\'%s\',\'yyyymmdd\'))"' \
-			% (series_id,series_name,newestDate)
-		url2 = glbUrl + qry
-		#print "Updating LAST_UPDATE for %s \n using URL: %s" % ( seriesJson['series'][0]['series_id'],url2 )
-		requests.get(url2,headers=h)	
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
 	except BaseException,e:
@@ -172,6 +165,23 @@ Must supply headers as in createTable """
 		return
 	finally:
 		return glbCount
+
+##############################################################################
+def setLastUpdated(date,series_id,series_name,h):
+	""" Prints JSON dictionary of a successful """
+	global glbUrl
+
+	try:
+		qry = '"INSERT INTO LAST_UPDATE (SERIES,SERIES_NAME,UPDATED) VALUES (\'%s\',\'%s\',TO_DATE(\'%s\',\'yyyymmdd\'))"' \
+			% (series_id,series_name,date)
+		url = glbUrl + qry
+		#print "Updating LAST_UPDATE for %s \n using URL: %s" % ( seriesJson['series'][0]['series_id'],url2 )
+		requests.get(url,headers=h)	
+	except requests.exceptions.RequestException,e:
+		print 'The request failed: %s' % (e)
+	except BaseException,e:
+		print e
+		return
 
 ##############################################################################
 def printJson(response):
