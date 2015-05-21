@@ -5,6 +5,7 @@ import requests, json, sys, re
 
 glbUrl = 'http://129.152.144.84:5001/rest/native/?query='
 glbCount = 0
+glbQry = '\"SELECT COUNT(1) FROM ALL_TABLES WHERE NAME = '
 
 ##############################################################################
 def getSeriesData(ser,apiKey,**kwargs):
@@ -16,26 +17,22 @@ passed to the query. """
 # TODO: check if table exists, and get LAST_UPDATED, then \
 #		generate URL parameters/modifier to pull newer than
 #		that date. This is being implemented with the **kwargs parameter
-#	url = 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=' + ser.upper()
-	global glbUrl
+
+	url = 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=' + ser.upper()
 	
-	url = glbUrl + apiKey + '&series_id=' + ser.upper()
 	if kwargs is not None:
 		for key, value in kwargs.iteritems():
 			url = url + '&' + key + '=' + value
 	print 'Url: %s' % (url)
-"""
+
 	try:
-	 return requests.get(url).json()
+	 #return requests.get(url).json()
+	 return requests.get(url)
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
-	except HTTPError as e:
-		print('HTTP error type.')
-		print('Error code: ', e.code)
-	except URLError as e:
-		print('URL type error.')
-		print('Reason: ', e.reason)
-"""
+	except BaseException, e:
+		print 'Unexpected exception: %s' % (e)
+
 ##############################################################################
 def createTable(series_id,header):
 	""" Creates a table if it does not already exits in
@@ -87,6 +84,25 @@ and keeps names (nominally) under 30 bytes """
 	except BaseException, e:
 		print 'Unexpected error: %s' % (e)
 
+##############################################################################
+def checkExists(alias,header):
+	""" Checks if a table exists """
+	global glbUrl
+
+	print glbUrl + qry + alias
+	#return requests.get(glbUrl + qry,headers=header)
+"""
+	try: 
+		if ((requests.get(url,headers=header)):
+			return -1
+		else:
+			return 1
+	except requests.exceptions.RequestException,e:
+		print 'The request failed: %s' % (e)
+		print('Reason: ', e.reason)
+	except BaseException, e:
+		print 'Unexpected error: %s' % (e)
+"""
 ##############################################################################
 def dropTable(series_id,header):
 	""" Drops the specified table from the Oracle database. 
@@ -168,7 +184,7 @@ Must supply headers as in createTable """
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
 	except BaseException,e:
-		print e
+		print 'Unexpected exception: %s' % (e)
 		return
 	finally:
 		return glbCount
@@ -187,31 +203,37 @@ def setLastUpdated(date,series_id,series_name,h):
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
 	except BaseException,e:
-		print e
-		return
+		print 'Unexpected exception: %s' % (e)
 
 ##############################################################################
 def printJson(response):
-  """ Prints JSON dictionary of a successful
+	""" Prints JSON dictionary of a successful
 response in a nice format """
-  try:
-    print json.dumps(response.json(), sort_keys=True, indent=4, separators=(',', ': '))
-  except ValueError,e:
-    print 'Decoding JSON has failed: %s' % (e)
-  return
+	try:
+		if (isinstance(response,dict)):
+			print json.dumps(response, sort_keys=True, indent=4, separators=(',', ': '))
+		else:
+			print json.dumps(response.json(), sort_keys=True, indent=4, separators=(',', ': '))
+	except ValueError,e:
+		print 'Decoding JSON has failed: %s' % (e)
+	except BaseException,e:
+		print 'Unexpected exception: %s' % (e)
 
 ##############################################################################
 def writeJson(response,filename):
-  """ Writes JSON dictionary of a successful
+	""" Writes JSON dictionary of a successful
 response in a nice format to a file """
-  try:
-    with open(filename,'w') as f:
-      f.write(json.dumps(response.json(),sort_keys=True, indent=4, separators=(',', ': ')))
-  except IOError,e:
-    print "I/O error ((0)): (1)".format(e.errno, e.strerror)
-  except BaseException,e:
-    print 'Undexpected error: %s' % (e)
-  return
+	try:
+			
+		with open(filename,'w') as f:
+			if (isinstance(response,dict)):
+				f.write(json.dumps(response, sort_keys=True, indent=4, separators=(',', ': ')))
+			else:
+				f.write(json.dumps(response.json(),sort_keys=True, indent=4, separators=(',', ': ')))
+	except IOError,e:
+		print "I/O error ((0)): (1)".format(e.errno, e.strerror)
+	except BaseException,e:
+ 		print 'Undexpected error: %s' % (e)
 
 ##############################################################################
 def printDict(dictionary,sortVal):
