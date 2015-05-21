@@ -15,8 +15,6 @@ and returns the standard EIA response object """
 #		that date
 #	url = 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=' + ser.upper()
 	
-# TODO: BIG ONE: Adjust so that it uses alias for the table name
-
 	url = glbUrl + apiKey + '&series_id=' + ser.upper()
 	try:
 	 return requests.get(url).json()
