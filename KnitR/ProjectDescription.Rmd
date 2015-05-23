@@ -1,0 +1,12 @@
+Energy Pricing data project
+============
+
+####Premise
+I started this project with the intention of compiling a large dataset for analyzing energy prices (petroleum products, coal, NG, electricity, etc,) but it seemed redundant to do that since the EIA already maintains all of that data. The focus shifted to creating tools to access this data using the EIA API and store it in an Oracle database for analysis, using a RESTful interface to insert/retrieve data and update some metadata. An API for the API, if you will.
+
+####Tools
+The primary tools is the **eia.py** module. This Python module contains the primary methods for retrieving data from the EIA datastores, and interfacing with the Oracle database.
+
+#####Methods
+- getSeriesData(ser,apiKey)
+-- test
