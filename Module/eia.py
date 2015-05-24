@@ -5,7 +5,7 @@ import requests, json, sys, re
 
 glbUrl = 'http://129.152.144.84:5001/rest/native/?query='
 glbCount = 0
-glbQry = '\"SELECT COUNT(1) FROM ALL_TABLES WHERE NAME = '
+glbQry = '\"SELECT COUNT(1) FROM ALL_TABLES WHERE TABLE_NAME=\''
 
 ##############################################################################
 def getSeriesData(ser,apiKey,**kwargs):
@@ -76,10 +76,11 @@ and keeps names (nominally) under 30 bytes """
 	global glbUrl
 	qry = '\"SELECT * FROM ALIASES WHERE NAME = \'' + series_id + '\'\"'
 	url = glbUrl + qry
-	#print 'Trying to get alias for ' + series_id + '\nUsing url ' + url
+	regex = re.compile(',\]')
 
 	try:	
-		s = json.loads(re.sub(',\]',']',requests.get(url,headers=header).text))
+		r = requests.get(url,headers=header)
+		s = json.loads(re.sub(regex,']',r.text))
 		return str(s['ALIAS'][0])
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
@@ -92,20 +93,22 @@ def checkExists(alias,header):
 	""" Checks if a table exists """
 	global glbUrl
 
-	print glbUrl + qry + alias
-	#return requests.get(glbUrl + qry,headers=header)
-"""
+	url = glbUrl + glbQry + alias + '\'\"'
+	regex = re.compile(',\]')
+
 	try: 
-		if ((requests.get(url,headers=header)):
-			return -1
-		else:
+		r = requests.get(url,headers=header)
+		s = json.loads(re.sub(regex,']',r.text))
+		if (s['COUNT(1)'][0] > 0):
 			return 1
+		else:
+			return -1
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
 		print('Reason: ', e.reason)
 	except BaseException, e:
 		print 'Unexpected error: %s' % (e)
-"""
+
 ##############################################################################
 def dropTable(series_id,header):
 	""" Drops the specified table from the Oracle database. 
