@@ -9,13 +9,13 @@ The primary tools is the **eia.py** module. This Python module contains the prim
 
 #####**Methods**
 - **getSeriesData(ser,apiKey,\*\*kwargs)** *Retrieves data series from EIA datastores, and allows you to pass optional start and stop dates using \*\*kwargs. Returns a Requests response object. See source for format, and EIA API doc for more information.*
-- **createTable(series_id,header)** *Creates a new table in the Oracle database. Nominally it would check for the table in the ALIASES database, and create a new alias based on a defined convention, since the series IDs can exceed 30 bytes, and contain illegal character. For now, it is up to the developer to insert a new alias into the table, and use an appropriate name.*
 - **getAlias(series_id,header)** *Returns the short alias for the series_id*
-- **checkExists(alias,header)** *Checks if a table exists. Currently doesn't function due to a possible quoting issue.*
+- **checkExists(alias,header)** *Checks if a table exists. Returns True or False.*
+- **createTable(series_id,header)** *Creates a new table in the Oracle database. Nominally it would check for the table in the ALIASES database, and create a new alias based on a defined convention, since the series IDs can exceed 30 bytes, and contain illegal character. For now, it is up to the developer to insert a new alias into the table, and use an appropriate name.*
 - **dropTable(series_id,header)** *Drops the table specified by series_id by retrieving the alias then submitting DROP statement*
 - **truncateTable(series_id,header)** *Truncates the table specified by series_id*
 - **insertRecords(seriesJson,h)** *Generates insert statements for the series_id contained in the provided JSON data. This data is returned by the getSeriesData() method. This information should be passed to this method like insertRecords(getSeriesData(foo,bar).json(),header). The getSeriesData() response object can be stored and the JSON element can be passed.*
-- **getLastUpdated(series_id,header)** *Being implmented. Will return the UPDATED field from the LAST_UPDATE table for the specified series_id (or alias.)*
+- **getLastUpdated(series_id,header)** *Returns the UPDATED field from the LAST_UPDATE table for the specified series_id (or alias.)*
 - **setLastUpdated(date,series_id,series_name,h)** *Updated the series entry in LAST_UPDATE with the most recent data value retrieved from the EIA datastores.*
 - **printJson(response)** *Prints JSON element of a successful Requests response object in a nice format.*
 - **writeJson(response,filename)** *Writes JSON element of a successful Requests response object in a nice format to the specified file.*

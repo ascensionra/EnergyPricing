@@ -4,6 +4,7 @@ http://api.eia.gov/category/?api_key=YOUR_API_KEY_HERE """
 import json,requests
 
 def getSeries(baseurl,category):
+	""" Retrieves all series in the specified category """
 	return requests.get(baseurl+str(category))
 
 def getCategories(baseurl,category):

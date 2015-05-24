@@ -100,9 +100,9 @@ def checkExists(alias,header):
 		r = requests.get(url,headers=header)
 		s = json.loads(re.sub(regex,']',r.text))
 		if (s['COUNT(1)'][0] > 0):
-			return 1
+			return True
 		else:
-			return -1
+			return False 
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
 		print('Reason: ', e.reason)
