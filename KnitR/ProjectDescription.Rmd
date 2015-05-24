@@ -16,10 +16,12 @@ The primary tool is the **eia.py** module. This Python module contains methods f
 - **truncateTable(series_id,header)** *Truncates the table specified by series_id*
 - **insertRecords(seriesJson,h)** *Generates insert statements for the series_id contained in the provided JSON data. This data is returned by the getSeriesData() method. This information should be passed to this method like insertRecords(getSeriesData(foo,bar).json(),header). The getSeriesData() response object can be stored and the JSON element can be passed. After inserting all records, setLastUpdated()*
 - **getLastUpdated(series_id,header)** *Returns the UPDATED field from the LAST_UPDATE table for the specified series_id (or alias.)*
-- **setLastUpdated(date,series_id,series_name,h)** *Updated the series entry in LAST_UPDATE with the most recent data value retrieved from the EIA datastores.*
+- **setLastUpdated(date,series_id,series_name,h)** *Updated the series entry in LAST_UPDATE with the most recent data value retrieved from the EIA datastores. If there is an attempt to update the record for a non-existent table, **None** is returned.*
 - **printJson(response)** *Prints JSON element of a successful Requests response object in a nice format.*
 - **writeJson(response,filename)** *Writes JSON element of a successful Requests response object in a nice format to the specified file.*
 - **printDict(dictionary,sortVal)** *Prints out the contents of a dictionary in a nice format using OrderedDict from collections to sort the dict.*
 
 #####**In Development**
 - **updateTable(series_id,header)** *This will access the LAST_UPDATE table to determine what data to retrieve from EIA. If no record exists, it will call checkExists() and create the table if necessary. Otherwise it will pull all data and call insertRecords() to populate the data.*
+- **deleteRecords(table,conditions,header)** *Accepts a list of conditions to delete from the specified table*
+- **[drop|truncate]Table()** *Will be adding a section to remove entry from LAST_UDATE in the event a table is DROPped or TRUNCATEd. In the case of a DROP, the ALIASES table will also be updated.*

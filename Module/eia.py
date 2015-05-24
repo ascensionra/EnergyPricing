@@ -5,7 +5,6 @@ import requests, json, sys, re
 
 glbUrl = 'http://129.152.144.84:5001/rest/native/?query='
 glbCount = 0
-glbQry = '\"SELECT COUNT(1) FROM ALL_TABLES WHERE TABLE_NAME=\''
 
 ##############################################################################
 def getSeriesData(ser,apiKey,**kwargs):
@@ -79,6 +78,8 @@ and keeps names (nominally) under 30 bytes """
 	regex = re.compile(',\]')
 
 	try:	
+		if (not checkExists(series_id,header)):
+			return None
 		r = requests.get(url,headers=header)
 		s = json.loads(re.sub(regex,']',r.text))
 		return str(s['ALIAS'][0])
@@ -93,7 +94,8 @@ def checkExists(alias,header):
 	""" Checks if a table exists """
 	global glbUrl
 
-	url = glbUrl + glbQry + alias + '\'\"'
+	qry = '\"SELECT COUNT(1) FROM ALL_TABLES WHERE TABLE_NAME=\''
+	url = glbUrl + qry + alias + '\'\"'
 	regex = re.compile(',\]')
 
 	try: 
@@ -211,20 +213,39 @@ Must supply headers as in createTable """
 		return glbCount
 
 ##############################################################################
+def deleteRecords(table,conditions,h):
+	""" Will remove records from specified table that match the conditions specified. Accepts conditions as a dictionary. """
+	global glbUrl
+
+	#qry = '"DELETE FROM %s WHERE %s = %s"' % (table,conditions.keys()[0],conditions.keys()[0][i])
+
+	try:
+		for i in conditions:
+			for j in conditions[i]:
+				url = glbUrl + '"DELETE FROM %s WHERE %s = \'%s\'"' % (table,i,j) 
+				print url
+				return requests.get(url,headers=h)
+	except requests.exceptions.RequestException,e:
+		print 'The request failed: %s' % (e)
+	except BaseException,e:
+		print 'Unexpected exception: %s' % (e)
+
+##############################################################################
 def setLastUpdated(date,series_id,series_name,h):
 	""" Updates the series entry in LAST_UPDATE with the most recent data value retrieved from EIA datastores.
 Returns Requests response object. """
 	global glbUrl
 
 	try:
-		if (getLastUpdated(series_id,h) is None):
+		if (getLastUpdated(series_id,h) is None):	# Check for existing entry in LAST_UPDATE table
+			if (getAlias(series_id,h) is None):		# If None, check if table exists.
+				return None							# If table does not exist, return None
 			qry = '"INSERT INTO LAST_UPDATE (SERIES,SERIES_NAME,UPDATED) VALUES (\'%s\',\'%s\',TO_DATE(\'%s\',\'yyyymmdd\'))"' \
 				% (series_id,series_name,date)
 			url = glbUrl + qry
-			#print "Updating LAST_UPDATE for %s \n using URL: %s" % ( seriesJson['series'][0]['series_id'],url2 )
 			return requests.get(url,headers=h)
-		else:
-			qry = '"UPDATE LAST_UPDATE SET UPDATED = ' + date + ' WHERE SERIES = \'' + series_id + '\'"'
+		else:										# If an entry exists, update it
+			qry = '"UPDATE LAST_UPDATE SET UPDATED = TO_DATE(\'%s\',\'yyyy-mm-dd\') WHERE SERIES = \'%s\'"' % (date,series_id)
 			url = glbUrl + qry
 			return requests.get(url,headers=h)
 	except requests.exceptions.RequestException,e:
