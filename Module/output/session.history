@@ -1,0 +1,2380 @@
+import series as s
+baseurl='http://api.eia.gov/category/?api_key=YOUR_API_KEY_HERE&category_id='
+category=241020
+r=s.getCategories(baseurl,category)
+r
+r.json
+r.json()P
+r.json()
+g=s.getChildCategories(r)
+baseurl='http://api.eia.gov/category/?api_key=&category_id='
+baseurl='http://api.eia.gov/category/?api_key=88465F906011215AB185A6E2A1D3994B&category_id='
+r=s.getCategories(baseurl,category)
+r.json()
+g=s.getChildCategories(r)
+g.json()
+g
+for i in g:
+	s.setJson(s.getList(s.getChildSeries(getSeries(baseurl,i['category_id']))))
+for i in g:
+	s.setJson(s.getList(s.getChildSeries(s.getSeries(baseurl,i['category_id']))))
+for i in g:
+	s.setJson(s.getList(s.getChildSeries(s.getSeries(baseurl,i['category_id']))))
+g
+g[0[
+g[0]
+for i in g:
+	json.loads(i)
+import json
+for i in g:
+	json.loads(i)
+for i in g:
+	print i
+import eia
+dir()
+import series
+import series as s
+baseurl
+category
+category=241335
+r=s.getCategories(baseurl,category)
+r
+r.json()
+eia.printJson(r)
+eia.writeJson(r,'241335.json')
+r['category']
+r.json()['category']
+r.json()['category'][0]
+r.json()['category']['childseries']
+for i inr.json()['category']['childseries']:
+for i in r.json()['category']['childseries']:
+	print i['f']
+	print i['f'] + ' : ' + i['name']
+for i in r.json()['category']['childseries']:
+	print i['f'] + ' : ' + i['name']
+for i in r.json()['category']['childseries']:
+	print i['f'] + ' : ' + i['name'] + ' : ' + i['updated']
+for i in r.json()['category']['childseries']:
+	if i['f'] in ['W','D']:
+		print i['f'] + ' : ' + i['name'] + ' : ' + i['updated']
+s=s.getChildSeries(r)
+s.
+s
+eia.printJson(s)
+eia.printJson(s.json())
+s.json()
+s
+for i in is:
+for i in s:
+	print i
+dir()
+s
+for i in s:
+	print i
+isinstance(s,list)
+ga
+ga=[]
+getList(s)
+s.getList(s)
+s=g
+import series as s
+s.getList(g)
+g
+for i in g:
+reload(s)
+s.getList(g)
+for i in g:
+	print i[series_id']
+for i in g:
+	print i['series_id']
+for i in g:
+	print i
+s
+g
+g=s.getCategories(r)
+r
+g=s.getList(r)
+g=s.getList(r.json())
+g=getChildCategories(r)
+g=s.getChildCategories(r)
+g
+ga
+r
+r.json()
+del(r)
+del(g)
+r=s.getCategories(baseurl,category)
+r.json()
+r.json['category'][0]['name']
+r.json()['category'][0]['name']
+r.json()['category']
+r.json()['category']['name']
+r.json()['category']['childcategories'][0]['name']
+r.json()['category']['childcategories']
+eia.printJson(r.json())
+r.json()
+eia.printJson(r)
+r.json()['category']['childseries']
+s.getChildSeries(r)
+g=s.getChildSeries(r)
+s.getList(g)
+reload(s)
+s.getList(g)
+l=s.getList(g)
+for i in l:
+	print l
+ga
+reload(s)
+ga
+ga[1,2,4,5,6]
+ga.append(1)
+ga
+l=s.getList(s)
+reload(s)
+del(ga)
+global ga
+ga = []
+ga.append(1)
+ga
+reload(s)
+del(ga)
+ga
+ga=[]
+ga.append(1)
+reload(s)
+s.getList(g)
+reload(s)
+s.getList(g)
+reload(s)
+s.getLists(g)
+s.getList(g)
+ga
+reload(s)
+l=s.getList(g,ga)
+l
+for i in l:
+	print l
+for i in l:
+	print i
+json.loads(l)
+json.dumps(l)
+eia.printJson(json.dumps(l))
+eia.printJson(l)
+fn
+ga
+l
+del(l,ga)
+ga
+ga=[]
+s.getList(g,ga)
+ga
+s.setJson(ga)
+g
+eia.printJson(g)
+r
+eia.printJson(r)
+del(r)
+r=s.getCategories(baseurl,462457)
+r
+r.json()
+eia.printJson(r)
+ga
+ga[:]=[]
+ga
+g=s.getSeries(r)
+r
+g=s.getChildSeries(r)
+g
+s.getList(g,ga)
+ga
+s.setJson(ga)
+import os
+os.lisdir()
+os.listdir(output)
+os.listdir('output')
+for i in oslistdir('output'):
+	with open(i,'r') as f:
+		json.loads(f)
+for i in os.listdir('output'):
+	with open(i,'r') as f:
+		json.loads(f)
+for i in os.listdir('output'):
+	with open('output/'+i,'r') as f:
+		json.loads(f)
+for i in os.listdir('output'):
+	with open('output/'+i,'r') as f:
+		json.load(f)
+in=[]
+readin = {}
+for i in os.listdir('output'):
+	with open('output/'+i,'r') as f:
+		in{i.split('.')[0]} = json.load(f)
+for i in os.listdir('output'):
+	with open('output/'+i,'r') as f:
+		readin{i.split('.')[0]} = json.load(f)
+for i in os.listdir('output'):
+	with open('output/'+i,'r') as f:
+		readin[i.split('.')[0]] = json.load(f)
+readin
+dir()
+import dfmod as df
+df.printdict(readin,'k')
+df.printDict(readin,'k')
+eia.printJson(readin)
+json.dump(readin)
+json.dumps(readin)
+for i in readin:
+	json.dumps(i,sort_keys=True,indent=4,separators=(',',':'))
+for i in readin:
+	json.dumps(i,sort_keys=True,indent=4,separators=(',',': '))
+for i in os.listdir('output'):
+	with ('output/'+i,'r') as f:
+		readin.append(json.load(f))
+readin=[]
+for i in os.listdir('output'):
+	with ('output/'+i,'r') as f:
+		readin.append(json.load(f))
+for i in os.listdir('output'):
+	with ('output/'+i,'r') as f:
+		readin.append(json.loads(f))
+readin
+for i in os.listdir('output'):
+	with ('output/'+i,'r') as f:
+		readin.append(json.load(f))
+for i in os.listdir('output'):
+	with open('output/'+i,'r') as f:
+		readin.append(json.load(f))
+readin
+for i in readin:
+	json.dumps(i,sort_keys=True,indent=4,separators=(',',': '))
+for i in readin:
+	print json.dumps(i,sort_keys=True,indent=4,separators=(',',': '))
+for i in readin[0]:
+	print i[1]
+for i in readin[0]:
+	print i
+for i in readin[0]:
+	print readin[0][i]
+for i in readin[0]:
+	print readin[0][1]
+readin
+for i in readin:
+	for j in i:
+		print j.values()
+for i in readin:
+	for j in i:
+		print j.values()
+for k in range(5):
+	for i in readin:
+		for j in i:
+			print j.values()
+count=0
+for i in readin:
+	for j in i:
+		print j.values()
+		count +=1
+		if (count == 5):
+			break
+count
+count = 0
+for i in readin:
+	for j in i:
+		count += 1
+		print j.values()
+		if (count == 5):
+			break
+for i in readin:
+	for j in i:
+		count += 1
+		print j.values()
+		if (count == 5):
+			exit
+count
+count = 0
+for i in readin:
+	for j in i:
+		count += 1
+		print j.values()
+		if (count == 5):
+			exit
+for i in readin:
+	if (count >= 5):
+		break
+	else:
+		for j in i:
+			print j.values()
+count
+count =0
+for i in readin:
+	if (count >= 5):
+		break
+	else:
+		for j in i:
+			count += 1
+			print j.values()
+readin
+readin = {}
+for i in os.listdir('output'):
+	with open('output/'+i,'r') as f:
+		readin[i.split('.')[0]]=json.loads(f)
+for i in os.listdir('output'):
+	with open('output/'+i,'r') as f:
+		readin[i.split('.')[0]]=json.load(f)
+readin
+for i in readin:
+	print i
+for i in readin:
+	print i
+readin
+for i in readin:
+	print readin[i]
+for i in readin:
+	print readin[i].values
+()
+for i in readin:
+	print readin[i].values()
+for i in readin:
+	print readin[i][0]
+	print readin[i][0].values()
+for i in readin:
+	print readin[i][0].values()
+for i in readin:
+	for j in readin[i]:
+		print j.values()
+for i in readin:
+	print json.dumps(readin[i],indent=4,separators=(',',': '))
+readin
+for i in readin:
+	for j in readin[i]:
+		print j.values()
+dir()
+tok = '88465F906011215AB185A6E2A1D3994B'
+reload(eia)
+readin[0].values()[0]
+readin[0]
+readin
+readin.values()
+readin.values()[0].values()
+readin.values()[0]
+readin.values()[0][0]
+readin.values()[0][0].value()
+readin.values()[0][0].values()
+test=readin.values()[0][0].values()
+eia.GetSeriesData(test,tok)
+eia.getSeriesData(test,tok)
+reloead(eia)
+reload(eia)
+eia.getSeriesData(test,tok)
+test
+test[0]
+eia.getSeriesData(test[0],tok)
+x=eia.getSeriesData(test[0],tok)
+eia.printJson(x)
+print json.dumps(x,sort_keys=True,indent=4,separators=(',',': '))
+json.dumps(x)
+x['series'][0]['data']
+reload(eia)
+dir(eia)
+del(eia)
+import eia
+dir(eia)
+reload(eia)
+x=eia.getSeriesData(test[0],tok)
+x
+x['series'][0]
+x['series'][0]['updated']
+x['series'][0]['series_id'[
+x['series'][0]['series_id']
+q=' CREATE TABLE TEMP (PRICE_DATE DATE NOT NULL, PRICE NUMBER, CONSTRAINT TEMP_PK PRIMARY KEY ( PRICE_DATE ) ENABLE);'
+q
+print q
+url
+ url = 'http://129.152.144.84:5001/rest/native/'
+url = 'http://129.152.144.84:5001/rest/native/'
+headers = {'DB':'jdbc:oracle:thin:@129.152.144.84:1521/PDB1.usuniversi01134.oraclecloud.internal','USER':'cs370_jsm3287','PASS':'orcl','MODE':'native_mode','MODEL':'model','returnDimensions':'False','returnFor':'JSON','d':'i[0]','v':'i[1]' }
+parameters
+headers
+parameters={'?query':q}
+parameters
+q
+q[1:]
+q=q[1:]
+q
+parameters={'?query=':(q)}
+parameters
+r
+h=headers
+p=parameters
+del(headers)
+del(parameters)
+r=requests.get(url,headers=h,params=p)
+import requests
+r=requests.get(url,headers=h,params=p)
+r
+r.text
+url = url + p
+p
+dir(r)
+r.text
+p
+url = url + '?query=' + p.values()
+p.values()
+url = url + '?query=' + p.values()[0]
+url
+url = 'http://129.152.144.84:5001/rest/native/?query='
+p={'?query=':'"CREATE TABLE TEMP (PRICE_DATE DATE NOT NULL, PRICE NUMBER, CONSTRAINT TEMP_PK PRIMARY KEY ( PRICE_DATE ) ENABLE);"'}
+[
+p
+url.split('?')[0]
+url = url.split('?')[0]
+p
+r= requests.get(url,headers=h,params=p)
+r
+r.text
+url
+url = "http://129.152.144.84:5001/rest/native/?query="
+p
+p[0]
+p.values()[0]
+url = url + "\"CREATE TABLE TEMP (PRICE_DATE DATE NOT NULL, PRICE NUMBER, CONSTRAINT TEMP_PK PRIMARY KEY ( PRICE_DATE ) ENABLE);\""
+url
+print url
+h
+p
+r=requests.get(url,headers=h)
+ur;
+url
+h
+url = url + "\"CREATE TABLE TEMP (PRICE_DATE DATE NOT NULL, PRICE NUMBER, CONSTRAINT TEMP_PK PRIMARY KEY ( PRICE_DATE ) ENABLE)\""
+r=requests.get(url,headers=h)
+h
+print json.dumps(h,indent=4,sort_keys=True,separators(',',': '))
+print json.dumps(h,indent=4,separators(',',': '))
+url
+url="http://129.152.144.84:5001/rest/native/?query=\"CREATE TABLE TEMP (PRICE_DATE DATE NOT NULL, PRICE NUMBER, CONSTRAINT TEMP_PK PRIMARY KEY ( PRICE_DATE ) ENABLE)\""
+url
+h
+r=requests.get(url,headers=h)
+r
+r.text
+r=requests.get(url,headers=h)
+r.text
+r=requests.get(url,headers=h)
+g
+h
+reload(eia)
+eia.createTable('abc',{'foo':'bar'})
+readin[0]
+readin
+readin.values()
+readin.values()[0].values()[0]
+readin.values()[0]
+readin.values()[0][0]
+readin.values()[0][0].values()
+readin.values()[0][0].values()[0]
+test
+eia.createTable(test[0],h)
+$_.text
+_
+_.text
+reload(eia)
+eia.createTable(test[0],h)
+_.text
+r.request()
+r.request
+dir(r)
+r.headers
+r.request.headers
+r.request.url
+reload(eia)
+r=eia.createTable(test[0],h)
+r.request.url
+reload(eia)
+r=eia.createTable(test[0],h)
+h
+url = " http://129.152.144.84:5001/rest/native/?query=\"CREATE TABLE PET.EER_EPLLPA_PF4_Y44MB_DPG.W (PRICE_DATE DATE NOT NULL, PRICE NUMBER, CONSTRAINT TEMP_PK PRIMARY KEY ( PRICE_DATE ) ENABLE)\""
+requests.get(url,headers=h)
+url = "http://129.152.144.84:5001/rest/native/?query=\"CREATE TABLE PET.EER_EPLLPA_PF4_Y44MB_DPG.W (PRICE_DATE DATE NOT NULL, PRICE NUMBER, CONSTRAINT TEMP_PK PRIMARY KEY ( PRICE_DATE ) ENABLE)\""
+requests.get(url,headers=h)
+url = "http://129.152.144.84:5001/rest/native/?query=\"CREATE TABLE \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE DATE NOT NULL, PRICE NUMBER, CONSTRAINT TEMP_PK PRIMARY KEY ( PRICE_DATE ) ENABLE)\""
+requests.get(url,headers=h)
+url
+r=eia.createTable(test[0],h)
+reload(eia)
+r=eia.createTable(test[0],h)
+reload(eia)
+r=eia.createTable(test[0],h)
+reload(eia)
+r=eia.createTable(test[0],h)
+reload(eia)
+r=eia.createTable(test[0],h)
+reload(eia)
+r=eia.createTable(test[0],h)
+reload(eia)
+r=eia.createTable(test[0],h)
+reload(eia)
+r=eia.createTable(test[0],h)
+reload(eia)
+r=eia.createTable(test[0],h)
+reload(eia)
+r=eia.createTable(test[0],h)
+r.text
+url
+url='http://129.152.144.84:5001/rest/native/?query="DROP TABLE "PET.EER_EPLLPA_PF4_Y44MB_DPG.W"'
+r=requests.get(url,headers=h)
+url='http://129.152.144.84:5001/rest/native/?query=\'DROP TABLE "PET.EER_EPLLPA_PF4_Y44MB_DPG.W\''
+url
+url='http://129.152.144.84:5001/rest/native/?query=\'DROP TABLE "PET.EER_EPLLPA_PF4_Y44MB_DPG.W\"\''
+url
+r=requests.get(url,headers=h)
+reload(eia)
+eia.createTable(test[0],h)
+reload(eia)
+eia.createTable(test[0],h)
+reload eia
+reload(eia)
+eia.createTable(test[0],h)
+reload(eia)
+eia.createTable(test[0],h)
+reload(eia)
+eia.createTable(test[0],h)
+_.text
+h
+test[0]
+reload(eia)
+eia.createTable(test[0],h)
+_text
+_.text
+_.json()
+reload(eia)
+eia.createTable(test[0],h)
+reload(eia)
+eia.createTable(test[0],h)
+reload(eia)
+eia.createTable(test[0],h)
+reload(eia)
+eia.createTable(test[0],h)
+url
+url = url.split('=')[0]
+url
+url + '=\'SELECT * FROM \"LAST_UPDATE\"\''
+url
+url = url + '=\'SELECT * FROM \"LAST_UPDATE\"\''
+url
+url = url + '='SELECT * FROM \"LAST_UPDATE\"'
+url = url + '=\'SELECT * FROM \"LAST_UPDATE\"\''
+url
+r=requests.get(url,headers=h)
+r.text
+url = url + '=SELECT * FROM LAST_UPDATE'
+url
+url = url.split('=')[0]
+url
+url = url + '=SELECT * FROM LAST_UPDATE'
+url
+url = url.split('=')[0]
+url = url + '=\'SELECT * FROM LAST_UPDATE\''
+url
+r=reuqests.get(url,headers=h)
+r=requests.get(url,headers=h)
+r.json()
+r.text
+json.loads(r.text)
+json.load(r.text)
+r.text
+reload(eia)
+eia.createTable(test[0],h)
+url
+url = url.split('\'')[0]
+url
+url = url + '\'CREATE TABLE \"FOO\" (PRICE_DATE DATE NOT NULL, PRICE NUMBER)\''
+url
+r=requests.get(url,headers=h)
+r.text
+url = url.split('\'')[0]
+url
+url = url + '\'DROP TABLE FOO\''
+requests.get(url,headers=h)
+reload(eia)
+eia.createTable(test[0],h)
+url = url + '\'DROP TABLE FOO\''
+requests.get(url,headers=h)
+url
+url = "http://129.152.144.84:5001/rest/native/?query='DROP TABLE FOO'"
+requests.get(url,headers=h)
+eia.createTable(test[0],h)
+reload(eia)
+relaod(eia)
+reload(eia)
+del(url)
+eia.createTable(test[0],h)
+url
+url = 'http://129.152.144.84:5001/rest/native/?query=\'DROP TABLE \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\"\''
+url
+requests.get(url,headers=h)
+g
+r.json()
+dir()
+j
+json.dumps(j)
+reload(eia)
+eia.insertRecords(json.dumps(j))
+r=eia.getSeriesData(test[0],tok)
+r.text
+t
+r
+eia.insertRecords(r)
+readin
+readin['241335']
+readin['241335'][0]
+readin['241335'][1]
+print json.dumps(readin,sort_keys=True,indent=4,separators=(',',': '))
+for i in readin:
+	for j in i:
+		print j
+for i in readin:
+	print i
+for i in readin:
+	for j in i:
+		print j.values()
+for i in readin:
+	for j in i:
+		print j[0].values()
+for i in readin:
+	for j in i[0]:
+		print j
+readin[0]
+readin
+readin.keys()
+readin.keys()[0]
+readin.keys()[0].values
+readin.keys()[0].values()
+eia.insertRecords[readin]
+readin
+eia.printjson(readin)
+eia.printJson(readin)
+json.dumps(readin)
+eia.insertRecords(json.dumps(readin)
+)
+eia.printJson(json.dumps(readin))
+readin['241335']
+for i in readin:
+	for j in i.values():
+		print j
+for i in readin:
+	print i.values()
+for i in readin:
+	print i
+for i in readin:
+	print readin[i].values()
+	print readin[i]
+for i in readin:
+	print readin[i]
+	print readin[i][0]
+	print readin[i]
+for i in readin:
+	print readin[i][0]
+for i in readin:
+	for j in readin[i]:
+		print j
+for i in readin:
+	for j in readin[i]:
+		print j.values()
+r
+reload(eia)
+r
+eia.insertRecords(r)
+reload(eia)
+eia.insertRecords(r)
+reload(eia)
+eia.insertRecords(r)
+reload(eia)
+eia.insertRecords(r)
+reload(eia)
+eia.insertRecords(r)
+reload(eia)
+r
+eia.printJson(r)
+r['series'][0]
+r['series']
+r['series']['name']
+r['name']
+r.keys()
+r['series'][0]['name']
+r['series'][0]['series_id']
+id=r['series'][0]['series_id']
+eia.createTable(id,h)
+eia.insertRecords(r,h)
+reload(eia)
+eia.insertRecords(r,h)
+reload(eia)
+eia.insertRecords(r,h)
+reload(eia)
+eia.insertRecords(r,h)
+reload(eia)
+eia.insertRecords(r,h)
+reload(eia)
+eia.insertRecords(r,h)
+qry
+qry='INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (to_date(\'20150424\',yyyymmdd), \'0\')'
+qry
+url
+url = url.split('=')[0]
+url
+url = url + '=' + qry
+url
+url = url.split('=')[0]
+url = url + '=\'' + qry
+url
+requests.get(url,h)
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (to_date(\'20150424\',yyyymmdd), \'0\')'
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (\'20150424\',\'0\')'
+url
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (20150424,0)'
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (TO_DATE('20150424,0)'
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (TO_DATE('20150424','yyyymmdd'),'0')'
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (TO_DATE('20150424','yyyymmdd'),'0')\''
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd\'),\'0\')\''
+url
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd\'),0)\''
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd\'),TO_NUMBER(\'0\'))\''
+requests.get(url,headers=h)
+UR;
+url
+print url
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE,PRICE) VALUES (TO_DATE("20150424","yyyymmdd"),TO_NUMBER("0"))\''
+print url
+requests.get(url,headers=h)
+print url
+url = 'http://129.152.144.84:5001/rest/native/?query=\"INSERT INTO \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE,PRICE) VALUES (TO_DATE(\"20150424\",\"yyyymmdd\"),TO_NUMBER(\"0\"))\"'
+print url
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (TO_DATE("20150424","yyyymmdd"),TO_NUMBER("0"))\''
+print url
+requests.get(url,headers=h)
+url = """http://129.152.144.84:5001/rest/native/?query="INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (TO_DATE("20150424","yyyymmdd"),TO_NUMBER("0"))""""
+url = """http://129.152.144.84:5001/rest/native/?query="INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (TO_DATE("20150424","yyyymmdd"),TO_NUMBER("0"))""" "
+url = """http://129.152.144.84:5001/rest/native/?query="INSERT INTO \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE,PRICE) VALUES (TO_DATE(\"20150424\","yyyymmdd\"),TO_NUMBER(\"0\"))\""""
+print url
+requests.get(url,headers=h)
+url = """http://129.152.144.84:5001/rest/native/?query="INSERT INTO \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE,PRICE) VALUES (TO_DATE(\"20150424\","yyyymmdd\"),)\""""
+requests.get(url,headers=h)
+id
+eia.createTable(id,h)
+reload(eia)
+eia.createTable(id,h)
+reload(eia)
+eia.createTable(id,h)
+requests.get(url,headers=h)
+url
+url = """http://129.152.144.84:5001/rest/native/?query="INSERT INTO \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE,PRICE) VALUES (TO_DATE(\"20150424\","yyyymmdd\"),"0")\""""
+requests.get(url,headers=h)
+print url
+url = http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE,PRICE) VALUES (TO_DATE("20150424","yyyymmdd"),"0")\''
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO """PET.EER_EPLLPA_PF4_Y44MB_DPG.W""" (PRICE_DATE,PRICE) VALUES (TO_DATE("20150424","yyyymmdd"),"0")\''
+print url
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO """PET.EER_EPLLPA_PF4_Y44MB_DPG.W""" (PRICE_DATE,PRICE) VALUES (TO_DATE(20150424,yyyymmdd),0)\''
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO """PET.EER_EPLLPA_PF4_Y44MB_DPG.W"""(PRICE_DATE,PRICE) VALUES (TO_DATE(20150424,yyyymmdd),0)\''
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W"(PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd\'),\'0\')\''
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query="""INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W"(PRICE_DATE,PRICE) VALUES (TO_DATE("20150424","yyyymmdd"),"0")"""'
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query="""INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W(PRICE_DATE,PRICE)" VALUES (TO_DATE("20150424","yyyymmdd"),"0")"""'
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query="""INSERT INTO \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE,PRICE) VALUES (TO_DATE("20150424","yyyymmdd"),"0")"""'
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd'),\'0\')\''
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd\'),\'0\')\''
+requests.get(url,headers=h)
+_.request.url
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd\'),\'0\')\''
+requests.get(url,headers=h)
+_.request.url
+url2= 'http://129.152.144.84:5001/rest/native/?query="SELECT * FROM LAST_UPDATE"'
+requests.get(url,headers=h)
+_
+_.text
+requests.get(url2,headers=h)
+_.json()
+_.text
+url2= 'http://129.152.144.84:5001/rest/native/?query="SELECT * FROM \"LAST_UPDATE\""'
+requests.get(url2,headers=h)
+_.text
+help(eia.createTable)
+print url2
+url2= 'http://129.152.144.84:5001/rest/native/?query=\SELECT * FROM "LAST_UPDATE"\''
+url2= 'http://129.152.144.84:5001/rest/native/?query=\'SELECT * FROM "LAST_UPDATE"\''
+requests.get(url2,headers=h)
+url
+print url
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "\"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\"" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd\'),\'0\')\''
+requests.get(url,headers=h)
+_.request.url
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd\'),\'0\')\''
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO "PET.EER_EPLLPA_PF4_Y44MB_DPG.W" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd\'))\''
+requests.get(url,headers=h)
+url = 'http://129.152.144.84:5001/rest/native/?query=\'INSERT INTO """"PET.EER_EPLLPA_PF4_Y44MB_DPG.W"""" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd\'),\'0\')\''
+requests.get(url,headers=h)
+print url
+url = 'http://129.152.144.84:5001/rest/native/?query="""INSERT INTO \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd\'),\'0\')"""'
+print url
+requests.get(url,headers=h)
+url
+r
+eia.insertRecords(r)
+eia.insertRecords(r,h)
+eia.createTable(id,h)
+eia.insertRecords(r,h)
+reload(eia)
+glbUrl = 'http://129.152.144.84:5001/rest/native/?query='
+url3=glbUrl.split('=')[0] + '='
+url3
+print url3
+del(url3,glbUrl)
+eia.insertRecords(r,h)
+print url
+reload(eia)
+eia.insertRecords(r,h)
+reload(eia)
+eia.insertRecords(r,h)
+reload(eia)
+eia.insertRecords(r,h)
+url
+print url
+reload(eia)
+eia.insertRecords(r,h)
+reload(eia)
+eia.insertRecords(r,h)
+reload(eia)
+eia.createTable(id,h)
+reload(eia)
+eia.createTable(id,h)
+reload(eia)
+eia.createTable(id,h)
+reload(eia)
+eia.createTable(id,h)
+eia.insertRecords(r,h)
+reload(eia)
+eia.createTable(id,h)
+eia.insertRecords(r,h)
+reload(eia)
+eia.insertRecords(r,h)
+reload(eia)
+eia.insertRecords(r,h)
+reload(eia)
+eia.insertRecords(r,h)
+url
+baseurl
+url2
+url2='http://129.152.144.84:5001/rest/native/?query="""SELECT * FROM "PET.EER_EPLLPA_PF4_Y44MB_DPG.W""""'
+x
+c
+x
+x=requests.get(url2,h)
+x=requests.get(url2,headers=h)
+x
+x.text
+url2
+url2='http://129.152.144.84:5001/rest/native/?query="SELECT * FROM \"PET.EER_EPLLPA_PF4_Y44MB_DPG.W\""'
+x=requests.get(url2,headers=h)
+x
+x.text
+url2='http://129.152.144.84:5001/rest/native/?query="SELECT * FROM \PET.EER_EPLLPA_PF4_Y44MB_DPG.W\''
+url2='http://129.152.144.84:5001/rest/native/?query=\'SELECT * FROM \PET.EER_EPLLPA_PF4_Y44MB_DPG.W"\''
+x=requests.get(url2,headers=h)
+x
+x.text
+url2='http://129.152.144.84:5001/rest/native/?query=\'SELECT * FROM "PET.EER_EPLLPA_PF4_Y44MB_DPG.W"\''
+x=requests.get(url2,headers=h)
+x
+x.text
+json.dumps(x)
+x.values()
+json.loads(x)
+json.loads(x.text)
+for i in x:
+x.text
+json.loads(x.text)
+x.json()
+x.json().values()
+x.json().values()[0]
+reload(eia)
+eia.insertRecords(r,h)
+cls
+x=requests.get(url2,headers=h)
+x
+x.text
+cls
+radin
+readin
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values())
+		rs=eia.getSeriesData(j.values(),tok)
+		eia.insertRecords(rs)
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values(),h)
+		rs=eia.getSeriesData(j.values(),tok)
+		eia.insertRecords(rs,h)
+for i in readin:
+	for j in readin[i]:
+		print j.values()
+for i in readin:
+	for j in readin[i]:
+		print j.values()[0]
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+		rs=eia.getSeriesData(j.values(),tok)
+		eia.insertRecords(rs,h)
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+r
+r['series']['updated']
+r['series'][0]['updated']
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+url3
+url2
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+relaod(eia)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+[4~
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia_
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+r['series'][0]['name']
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+R
+rs
+rs['series'][0]['series_name']
+rs['series'][0]['name']
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+def testInsert(response,headers,token):
+	for i in readin:
+		for j in readin[i]:
+			rs=eia.getSeriesData(j.values()[0],tok)
+			eia.insertRecords(rs,h)
+testInsert(readin,h,tok)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia)
+testInsert(readin,h,tok)
+r
+readin
+for i in readin:
+	for j in readin[i]:
+		print j.values()
+		print j.values()[0]
+for i in readin:
+	for j in readin[i]:
+		print j.values()[0]
+def testInsert():
+	for i in readin:
+		for j in readin[i]:
+			rs=eia.getSeriesData(j.values()[0],tok)
+			eia.insertRecords(rs,h)
+testInsert()
+reload(eia)
+testInsert()
+url2
+z
+x
+x.text
+x=requests.get(url2,headers=h)
+x
+x.text
+testInsert()
+reload(eia)
+testInsert()
+reload(eia)
+testInsert()
+reload(eia)
+testInsert()
+reload(eia)
+testInsert()
+reload(eia)
+testInsert()
+reload(eia)
+testInsert()
+reload(eia)
+testInsert()
+reload(eia)
+r
+readin[0]
+readin
+readin[readin.keys()[0]][1]
+readin[readin.keys()[0]][1].values()[0]
+r=eia.getSeriesData(readin[readin.keys()[0]][1].values()[0],tok)
+r
+rr
+r
+eia.printJson(r)
+reload(eia)
+r=eia.getSeriesData(readin[readin.keys()[0]][1].values()[0],tok)
+r
+r.text
+r.json()
+eia.printJson(r)
+eia.insertRecords(r.json(),h)
+reload(eia)
+eia.insertRecords(r.json(),h)
+reload(eia)
+eia.insertRecords(r.json(),h)
+reload(eia)
+eia.insertRecords(r.json(),h)
+reload(eia)
+eia.insertRecords(r.json(),h)
+reload(eia)
+eia.insertRecords(r.json(),h)
+reload(eia)
+eia.insertRecords(r.json(),h)
+h
+r
+x
+reload(eia)
+eia.insertRecords(r.json(),h)
+test
+testurl
+testurl='http://129.152.144.84:5001/rest/native/?query="""INSERT INTO "PET.EER_EPD2DXL0_PF4_Y35NY_DPG.D" (PRICE_DATE,PRICE) VALUES (TO_DATE('20150413','yyyymmdd'),'1.79')"""'
+testurl='http://129.152.144.84:5001/rest/native/?query="""INSERT INTO "PET.EER_EPD2DXL0_PF4_Y35NY_DPG.D" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150413\',\'yyyymmdd\'),\'1.79\')"""'
+requests.get(testurl,headers=h)
+x
+testurl='http://129.152.144.84:5001/rest/native/?query="""" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150424\',\'yyyymmdd\'),\'0\')"""'
+requests.get(testurl,headers=h)
+testurl='http://129.152.144.84:5001/rest/native/?query="""INSERT INTO "PET.EER_EPD2DXL0_PF4_Y35NY_DPG.D" (PRICE_DATE,PRICE) VALUES (TO_DATE(\'20150413\',\'yyyymmdd\'),\'1.79\')"""'
+requests.get(testurl,headers=h)
+from time import sleep
+for i in readin:
+	for j in readin[i]:
+		j.getValues()[0]
+for i in readin:
+	for j in readin[i]:
+		print j[0].getvalues()['series_id']
+for i in readin:
+	for j in readin[i]:
+		print j[0].getvalues()
+for i in readin:
+	for j in readin[i]:
+		print j
+for i in readin:
+	for j in readin[i]:
+		print j.values()
+for i in readin:
+	for j in readin[i]:
+		print j.values()[0]
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],tok)
+		sleep(2)
+for i in readin:
+	for j in readin[i]:
+		print j.values()[0]
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],tok)
+readin[0][0].values()
+readin[0].values()
+readin
+readin.values()[0].values()[0]
+readin.values()[0]
+readin.values()[0][0].values()
+json.dumps(readin.values()[0][0].values())
+json.dumps(readin.values()[0][0].values())[0]
+json.dumps(readin.values()[0][0].values())[1]
+readin.values()[0][0].values()[0]
+z=readin.values()[0][0].values()[0]
+eia.createTable(z,tok)
+eia.createTable(z,h)
+for i in readin:
+	for j in readin[i]:
+		print j[0].values()
+for i in readin:
+	for j in readin[i]:
+		print j.values()[0]
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+		sleep(2)
+testInsert
+testInsert()
+r
+r.json()
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+for i in readin:
+	for j in readin[i]:
+		print j.values()[0]
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+reload(eia)
+glbCount
+eia.glbCount
+for i in readin:
+	for j in readin[i]:
+		rs=eia.getSeriesData(j.values()[0],tok)
+		eia.insertRecords(rs,h)
+eia.glbCount
+eia.glbCount=0
+for i in readin:
+	for j in readin[i]:
+		print j
+for i in readin:
+	for j in readin[i]:
+		print j[j[0]]
+for i in readin:
+	for j in readin[i]:
+		print j[0]
+for i in readin:
+	for j in readin[i]:
+		print j.values()
+for i in readin:
+	for j in readin[i]:
+		for k in j:
+			print k.split(".")[1]
+for i in readin:
+	for j in readin[i]:
+		for k in j.values():
+			print k.split(".")[1]
+alias = {}
+for i in readin:
+	for j in readin[i]:
+		for k in j.values():
+			print k
+for i in readin:
+	for j in readin[i]:
+		for k in j.values():
+			alias[k] = k.split(".")[1]
+alias
+dir(dfMod)
+dir(dfmod)
+import dfmod
+dfmod.printDict(alias,k)
+alias[:] = []
+del(alias_
+del(alias)
+alias = {}
+for i in readin:
+	for j in readin[i]:
+		for k in j.values():
+			alias[k.split(".")[1]] = k
+dfmod.printDict(alias,k)
+dfmod.printDict(alias,v)
+dfmod.printDict(alias,"key")
+dfmod.printDict(alias,"v")
+for i in readin:
+	for j in readin[i]:
+		for k in j.values():
+			print k.split(".")[1]+k.split(".")[2] + ": " + k
+del(alias(
+del(alias)
+alias={}
+for i in readin:
+	for j in readin[i]:
+		for k in j.values():
+			alias[k.split(".")[1]+k.split(".")[2]]= k
+dfmod.printDict(alias,"k")
+for i in alias.keys():
+	print len(i)
+for i in alias.values():
+	print len(i)
+for i in alias:
+	print len(i.keys())
+for i in alias:
+	print len(alias[i]))
+	print len(alias[i])
+for i in alias:
+	print len(alias[i])
+	print i
+for i in alias:
+	print i
+for i in alias:
+	print len(i) + ": " + len(alias[i])
+for i in alias:
+	print str(len(i)) + ": " + str(len(alias[i]))
+dfmod.printDict(alias,'k')
+	print str(len(i)) + ": " + str(len(alias[i]))
+dfmod.printDict(alias,'v')
+dfmod.printDict(alias,'k')
+eia.glbUrl
+eia.glbCount
+help(eia)
+eia.url
+help(dfmod)
+dfmod.printDict(alias,'k')
+url
+reload(eia)
+dir(eia)
+help(eia)
+qry
+qry =  """DROP TABLE "%s" PURGE"""
+eia.glbUrl
+url2
+url2 = eia.glbUrl + qry
+url2
+url2 = eia.glbUrl + '\' + qry + '\'
+url2 = eia.glbUrl + '\' + qry + '\''
+url2 = eia.glbUrl + '\'' + qry + '\''
+url2
+alias[1]
+alias
+for i in alias:
+	print i
+for i in alias:
+	print alias[i]
+drops = []
+for i in alias:
+	drops.append(alias[i])
+drops
+for i in drops:
+	print i
+h
+for i in drops:
+reload(eia
+)
+help(eia)
+for i in drops:
+	eia.dropTable(i,header)
+h
+for i in drops:
+	eia.dropTable(i,h)
+dir(eia)
+help(eia)
+qry
+del(qry,drops)
+ls
+dir()
+j
+del(j)\
+
+del(j)
+f
+del(f)
+g
+ga
+del(g,ga)
+dir()
+q
+p
+os
+s
+sleep
+test
+del(test)
+testInsert
+help(testInsert)
+del(testInsert)
+testUrl
+testurl
+del(testurl)
+dir()
+x
+x.text
+del(x)
+z
+del(z)
+dir()
+q
+del(q)
+p
+del(p)
+dir()
+r
+r.text
+del(r)
+dir()
+url
+del(url)
+del(url2)
+dir
+dir()
+dir(baseurl)
+baseurl
+tok
+glbUrl
+eia.glbUrl
+dir()
+series
+h
+i
+del(i)
+dir()
+id
+del(id_
+del(id)
+dir()
+k
+del(k_
+del(k)
+dir()
+category
+del(category)
+dir()
+count
+del(count)
+dir()
+s
+help(series)
+reload(s)
+help(s)
+reload(series as s)
+del(s)
+import series as s
+help(s)
+reload(s)
+help(s)
+help(eia)
+url
+for i in alias:
+	print 
+for i in alias:
+	print i
+url = eia.glbUrl + '\'CREATE TABLE ALIASES (ALIAS NVARCHAR2(30) NOT NULL, NAME NVARCHAR(50) NOT NULL)\''
+URL
+url
+r=requests.get(url,headers=h)
+r
+url
+eia.glbUrl
+url = eia.glbUrl + """'CREATE TABLE ALIASES (ALIAS NVARCHAR2(30) NOT NULL, NAME NVARCHAR(50) NOT NULL)"""'
+url = eia.glbUrl + """'CREATE TABLE ALIASES (ALIAS NVARCHAR2(30) NOT NULL, NAME NVARCHAR(50) NOT NULL)'"""
+r=requests.get(url,headers=h)
+r
+r.text
+reload(eia)
+help(eia)
+url
+del(url)
+eia.glbUrl
+url = eia.glbUrl + '"""CREATE TABLE ALIASES (ALIAS NVARCHAR2(30) NOT NULL, NAME NVARCHAR(50) NOT NULL)"""'
+url
+r= requests.get(url,headers=h)
+r
+del(url)
+url = eia.glbUrl + '\'CREATE TABLE ALIASES (ALIAS NVARCHAR2(30) NOT NULL, NAME NVARCHAR(50) NOT NULL);\''
+URL
+url
+r = requests.get(url,headers=h)
+url
+url = eia.glbUrl + '\'CREATE TABLE ALIASES (ALIAS NVARCHAR2(30) NOT NULL, NAME NVARCHAR(50) NOT NULL)\;\''
+r = requests.get(url,headers=h)
+url = eia.glbUrl + '\'CREATE TABLE ALIASES (ALIAS NVARCHAR2(30) NOT NULL, NAME NVARCHAR(50) NOT NULL)\''
+r = requests.get(url,headers=h)
+r
+r.text
+url = eia.glbUrl + '\'CREATE TABLE ALIASES (ALIAS VARCHAR2(30) NOT NULL, NAME VARCHAR(50) NOT NULL)\''
+r = requests.get(url,headers=h)
+r
+r.text
+alias
+for i in alias"
+for i in alias:
+	print alias[i]
+url
+del(url)
+eia.Url
+eia.glbUrl
+for i in alias:
+	print alias[i] + ': ' + i
+qry = '"""INSERT INTO %s (ALIAS,NAME) VALUES (\'%s\',\'%s\')"""' % (i,alias[i])
+qry = '"""INSERT INTO ALIASES (ALIAS,NAME) VALUES (\'%s\',\'%s\')"""' % (i,alias[i])
+qry
+url = eia.glbUrl + qry
+url
+i
+del(i)
+url
+i
+for i in alias:
+	print url
+for i in alias:
+	print eia.glbUrl + qry
+url
+qry
+for i in alias:
+	print i
+for i in alias:
+	qry = '"""INSERT INTO ALIASES (ALIAS,NAME) VALUES (\'%s\',\'%s\')"""' % (i,alias[i])
+	url = eia.glbUrl + qyr
+	url = eia.glbUrl + qry
+	print url
+for i in alias:
+	qry = '"""INSERT INTO ALIASES (ALIAS,NAME) VALUES (\'%s\',\'%s\')"""' % (i,alias[i])
+	url = eia.glbUrl + qry
+for i in alias:
+	qry = '"""INSERT INTO ALIASES (ALIAS,NAME) VALUES (\'%s\',\'%s\')"""' % (i,alias[i])
+	url = eia.glbUrl + qry
+	print url
+for i in alias:
+	qry = '"""INSERT INTO ALIASES (ALIAS,NAME) VALUES (\'%s\',\'%s\')"""' % (i,alias[i])
+	url = eia.glbUrl + qry
+	requests.get(url,headers=h)
+alias
+alias[0]
+alias[0].values()
+alias[0].values
+dir(alias)
+alias.values[0]
+alias.values()[0]
+reload(eia)
+eia.getAlias(alias.values()[0])
+eia.getAlias(alias.values()[0],h)
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+eia.glbUrl
+qry
+qry = '"""SELECT * FORM ALIASES"""'
+url
+url = glbUrl + qry
+url = eia.glbUrl + qry
+url
+r=requests.get(url,headers=h)
+r
+r.json()
+qry = '"""SELECT * FROM ALISES"""'
+url = eia.glbUrl + qry
+r=requests.get(url,headers=h)
+r
+r.json()
+eia.glbUrl
+url = eia.glbUrl + '"""SELECT * FROM LAST_UPDATE"""'
+url
+requests.get(url,headers=h)
+$.text
+_.text
+alias.values()[0]
+eval(alias.values()[0])
+url = glbUrl + 'SELECT ALIAS FROM ALIASES WHERE NAME="' + alias.values()[0] + '"'
+url = eia.glbUrl + 'SELECT ALIAS FROM ALIASES WHERE NAME="' + alias.values()[0] + '"'
+url
+url = eia.glbUrl + '"""SELECT ALIAS FROM ALIASES WHERE NAME="' + alias.values()[0] + '""""'
+url
+requests.get(url,headers=h)
+_.json()
+_.text
+url = eia.glbUrl + 'SELECT ALIAS FROM ALIASES WHERE NAME="' + alias.values()[0] + '"'
+requests.get(url,headers=h)
+_
+_.text
+url = eia.glbUrl + 'SELECT * FROM ALIASES WHERE NAME="' + alias.values()[0] + '"'
+requests.get(url,headers=h)
+url = eia.glbUrl + 'SELECT * FROM ALIASES'
+requests.get(url,headers=h)
+url
+url = eia.glbUrl + '"""SELECT * FROM ALIASES"""'
+requests.get(url,headers=h)
+eia.printJson(_)
+url = eia.glbUrl + '"""SELECT * FROM ALIASES WHERE NAME="' + alias.values()[0] + '""""'
+url
+print url
+requests.get(url,headers=h)
+url = eia.glbUrl + '"""SELECT * FROM ALIASES WHERE NAME=\'"' + alias.values()[0] + '"\'"""'
+url
+requests.get(url,headers=h)
+r=_
+r
+r.json()
+url = eia.glbUrl + '"""SELECT ALIAS FROM ALIASES WHERE NAME=\'"' + alias.values()[0] + '"\'"""'
+r=requests.get(url,headers=h)
+r.text
+t.json()
+r.json()
+url
+url = eia.glbUrl + '"SELECT ALIAS FROM ALIASES WHERE NAME=\'' + alias.values()[0] + '\'"'
+url
+print url
+r=requests.get(url,headers=h)
+r
+r.json()
+r.text()
+r.text
+r['ALIAS']
+r.test['ALIAS']
+r.text['ALIAS']
+r.text[0]['ALIAS']
+r.text[0]
+print r.test
+print r.text
+r.json()
+r.text[0]
+r.text[1]
+r.text[2]
+r.text
+url = eia.glbUrl + '"SELECT * FROM ALIASES WHERE NAME=\'' + alias.values()[0] + '\'"'
+r=requests.get(url,headers=h)
+r
+r.text
+r.json()
+r
+dir(r)
+r.raw
+r.raw()
+r._content
+print r.text
+print r.text["ALIAS"]
+h
+r.text
+url
+print json.loads(r)
+print json.loads(r.text)
+json.dumps(r.text)
+eia.printJson(json.dumps(r.text))
+eia.printJson(json.loads(r.text))
+json.loads(r)
+json.loads(r.text)
+json.dumps(r.text)
+json.dumps(r.raw)
+json.dumps(r.raw.text)
+json.dumps(r.text)
+print json.dumps(r.text)
+eia.printJson(json.dumps(r.text))
+r
+url
+requests.get(url,headers=h)
+_.text
+_.json()
+_
+r=requests.get(url,headers=h)
+dir(r)
+r.url
+r.json
+r.json()
+dir(json)
+url2 = eia.glbUrl + 'SELECT * FROM ALIASES'
+url2
+t
+t=requests.get(url,headers=h)
+t
+t.json()
+json.loads(t.text)
+json.dumps(t.text)
+t=requests.get(url2,headers=h)
+t.json()
+t.text
+url2
+url2 = eia.glbUrl + '"SELECT * FROM ALIASES"'
+t=requests.get(url2,headers=h)
+t
+t.json()
+r.text
+t.text
+t.json[0]
+t.json()[0]
+t.json().keys()
+t.json()['ALIAS'].keys()
+t.json()['ALIAS'].values()
+t.json()['ALIAS']
+r
+r.text
+r.json()['NAME']
+url
+url2
+url = eia.glbUrl + '"SELECT NAME FROM ALIASES WHERE NAME=\'' + alias.values()[0] + '\'"'
+url
+print url
+r=requests.get(url,headers=h)
+r
+r.text
+r.json()['NAME']
+t.text
+r.keys()
+r.json().keys()
+r.text'
+r.text
+print url
+r.text
+json.dumps(r.text)
+r.text['"NAME"']
+isinstance(r.text,list)
+isinstance(json.dumps(r.text),list)
+isinstance(t.text,list)
+isinstance(t.json,list)
+isinstance(t.json,json)
+isinstance(r.text,dict)
+isinstance(t.text,dict)
+isinstance(t.json,dict)
+isinstance(json.dumps(t.text),dict)
+is instance(r.text,basestring)
+isinstance(r.text,basestring)
+isinstance(t.json,basestring)
+t.json
+t.json()
+isinstance(t.json(),dict)
+isinstance(r.json(),dict)
+r.text
+url = eia.glbUrl + '"SELECT NAME FROM ALIASES HAVING NAME=\'' + alias.values()[0] + '\'"'
+r=requests.get(url,headers=h)
+r
+r.text
+url = eia.glbUrl + '"SELECT NAME FROM ALIASES WHERE NAME=\'' + alias.values()[0] + '\'"'
+r=requests.get(url,headers=h)
+r.text
+alias.values()[0]
+str(alias.values()[0])
+url = eia.glbUrl + '"SELECT NAME FROM ALIASES WHERE NAME=\'' + str(alias.values()[0]) + '\'"'
+r=requests.get(url,headers=h)
+r.text
+t.text
+url = eia.glbUrl + '"SELECT * FROM ALIASES WHERE NAME=\'' + str(alias.values()[0]) + '\'"'
+r=requests.get(url,headers=h)
+r.text
+r.json()
+print url
+r.text
+t.text
+p=r.text.split(',')
+p
+p[0]
+pp=[0]+p[1]+','+p[2]+p[3]
+pp=str([0])+str(p[1])+','+str(p[2])+str(p[3])
+pp
+p[9]
+p[0[
+p[0]
+pp
+pp=str(p[0])+str(p[1])+','+str(p[2])+str(p[3])
+pp
+isinstance(pp,dict)
+dict(pp)
+list(pp)
+pp
+isinstance(pp,basestring)
+p
+p[0]
+p
+del(p,pp)
+r.text
+r.raw()
+json.loads(r.text)
+json.dumps(r.text)
+pp
+p=r.text.split(',')
+pp=str(p[0])+str(p[1])+','+str(p[2])+str(p[3])
+pp
+json.dumps(pp)
+eia.printJson(json.dumps(pp))
+j= json.dumps(pp)
+j
+eia.printJson(j)
+del(j)
+dir()
+df
+del(df)
+del(dfmod)
+del(p,pp)
+readin
+p
+j
+r.text
+print url
+url
+print url
+readin
+for i in readin:
+	for j in readin[i]:
+		print j.values()
+for i in readin:
+	for j in readin[i]:
+		print j.values()[0]
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0]
+)
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],tok)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+reload(eia)
+eia.printDict(t.json(),'key')
+r.text
+reload(eia)
+alias.values()[0]
+eia.getAlias(alias.values()[0])
+eia.getAlias(alias.values()[0],h)
+reload eia
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+url
+eia.getAlias(alias.values()[0],h)
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+url
+print url
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+r
+r.text
+re
+import re
+re.compile(',\]')
+p=re.compile(',\]')
+re.sub(p,']',r.text)
+json.loads(re.sub(p,']',r.text))
+json.loads(re.sub(p,']',r.text))[0]['ALIAS']
+json.loads(re.sub(p,']',r.text))[0]
+json.loads(re.sub(p,']',r.text))
+pp=re.sub(p,']',r.text)
+json.loads(pp)['ALIAS'][0]
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+eia.printDict(pp,'k')
+pp
+isinstance(pp,dict)
+isinstance(json.loads(pp),dict)
+reload(eia)
+eia.getAlias(alias.values()[0],h)
+reload(eia)
+s2 = eia.getAlias(alias.values()[0],h)
+s2
+print s2
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+eia.glbCount
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+eia.glbCount
+eia.glbCount = 0
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+reload(eia)
+eia.glbCount
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		eia.dropTable(j.values()[0],h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+eia.glbCount
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+for i in readin:
+	for j in readin[i]:
+		eia.dropTable(j.values()[0],h)
+reload(eia)
+for i in readin:
+	for j in readin[i]:
+		eia.createTable(j.values()[0],h)
+print glbCount
+print eia.glbCount
+dir()
+rs
+eia.writeJson(rs,'output/rs.json')
+eia.printDict(rs,'k')
+rs[0]
+rs.keys()
+rs['series'][0]
+rs.keys()
+rs['request'][0]['series_id']
+rs['request']['series_id']
+rs['series'][0]['data']
+reload(eia)
+eia.insertRecords(rs)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+rs
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+reload(eia)
+eia.insertRecords(rs,h)
+alias
+rs
+rs['data'][0]
+rs.keys()
+rs['series'][0]['updated']
+url
+bigurl
+args = {"start":"2015-05-01"}
+reload(eia)
+alias.values()[1]
+rs2=eia.getSeriesData(alias.values()[1],tok,args)
+reload(eia)
+rs2=eia.getSeriesData(alias.values()[1],tok,args)
+alias.values()[1]
+str(alias.values()[1])
+rs2=eia.getSeriesData(alias.values()[1],tok)
+tok
+dir(eia)
+dir(eia.getSeriesData)
+eia.getSeriesData.__init__
+eia.getSeriesData.__init__()
+help(eia.getSeriesData)
+arg
+dir()
+args
+args = {start:'2015-05-01'}
+args = {"start":"2015-05-01"}
+rs2=eia.getSeriesData(alias.values()[1],tok,args)
+rs2=eia.getSeriesData(alias.values()[1],tok,**args)
+reload(eia)
+rs2=eia.getSeriesData(alias.values()[1],tok,**args)
+reload(eia)
+rs2=eia.getSeriesData(alias.values()[1],tok,**args)
+reload(eia)
+rs2=eia.getSeriesData(alias.values()[1],tok,**args)
+rs2.text
+rs2=eia.getSeriesData(alias.values()[1],tok)
+rs2.json()
+rs2.text
+readin[0]
+readin[0].keys()
+readin.keys()
+readin.keys()[0].values()[10]
+readin.keys()[0]
+readin.values()
+readin.keys()[0]
+rs2=eia.getSeriesData(readin.keys()[0],tok,**args)
+rs2
+rs2.text
+for i in readin:
+	for j in readin[i]:
+		print j
+eia.printJson(readin[0])
+eia.printJson(readin)
+eia.printDict(readin,'k')
+readin[0][0].values()
+readin[0]
+readin[0].values()
+isinstance(readin[0],dict)
+isinstance(readin,dict)
+readin.keys()
+readin[readin.keys[0]]
+readin[readin.keys()[0]]
+readin[readin.keys()[0]][1]
+readin[readin.keys()[0]][1].values()
+x
+x=readin[readin.keys()[0]][1].values()
+rs2=eia.getSeriesData(x,tok,**args)
+x
+x[0]
+x=readin[readin.keys()[0]][1].values()[0]
+x
+rs2=eia.getSeriesData(x,tok,**args)
+rs2
+rs2.text
+readin[readin.keys()[0]]
+readin[readin.keys()[0]][0]
+readin.keys()[0]
+x=readin.keys()[0]
+rs2=eia.getSeriesData(x,tok,**args)
+rs2
+rs2=eia.getSeriesData(x,tok)
+rs2
+s
+s.getSeries(baseurl,x)
+rs2=_
+rs2.text
+rs2.json()[0]
+rs2.json().keys()[10]
+rs2.json().keys()[0]
+rs2.json().keys()
+rs2.json().keys()[0].values()
+rs2.json().values()
+s.getChildSeries(rs2)
+_
+_.keys()
+_
+isinstance(_,dict)
+_
+url2
+url2='http://api.eia.gov/search/?search_term=name&search_value='
+x
+readin[readin.keys()[0]]
+readin[readin.keys()[0]][0]
+readin[readin.keys()[0]][0].values()
+readin[readin.keys()[0]][0].values()[0]
+x=readin[readin.keys()[0]][0].values()[0]
+url2+x
+url2+'"'+x+'"'
+url2 = url2+'"'+x+'"'
+requests.get(url2,tok)
+requests.get(url2)
+_
+_.text
+_
+rs2 = requests.get(url2)
+eia.printDict(rs2,'k')
+eia.printDict(rs2['responseHeader'],'k')
+rs2[0]
+rs2.keys()
+rs2[0]
+rs2
+rs2.json()[0]
+eia.printJson(rs2)
+url2
+url2 = 'http://api.eia.gov/search/?search_term=name&search_value='
+url3 = url2 + '\"' + x + '\"'
+url3
+rs2=requests.get(url3)
+rs2
+eia.printJson(rs2)
+url3
+requests.get('http://api.eia.gov/search/?search_term=series_id&search_value="PET.MB"')
+_
+_.text
+url2 = 'http://api.eia.gov/search/?search_term=series_id&search_value='
+url3
+url3 = url2 + '\"' + x + '\"'
+url3
+requests.get(url3)
+_.text
+_
+eia.printJson(_)
+_.json()
+rs2 = requests.get(url3)
+eia.printJson(rs2)
+eia.writeJson(rs2,'output/rs2.json')
+X
+x
+url3
+url4
+del(x)
+dir()
+t
+del(t)
+r
+del(r)
+s
+s2
+p
+del(p,pp)
+qry
+r
+dir()
+h
+i
+j
+url2
+url3
+url
+baseurl
+eia.glbUrl
+url
+url2
+url2=eia.glbUrl
+url2
+args
+x
+readin[readin.keys()[0]][0].values()[0]
+x=readin[readin.keys()[0]][0].values()[0]
+eia.getSeriesData(x,tok,**args)
+reload(eia)
+eia.getSeriesData(x,tok,**args)
+rs2=_
+rs2.text
+rs2.json(()
+rs2.json()
+eia.printJson(rs2)
+eia.writeJson(rs2,'output/rs2.json')
+reload(eia)
+eia.printJson(rs2.json())
+eia.printJson(rs2)
+reload(eia)
+eia.writeJson(rs2.json(),'output/rs2.dict.json')
+eia.writeJson(rs2,'output/rs2.resp.json')
+eia.baseUrl
+eia.glbUrl
+url
+qry
+qry = '"SELECT * FROM FOO"'
+url = eia.glbUrl + qry
+url
+r
+r=requests.get(url,headers=h)
+r
+r.text
+qry
+qry = 'BEGIN EXECUTE IMMEDIATE "SELECT * FROM FOO"; EXCEPTION WHEN OTHERS THEN IF SQLCODE = -955 THEN RAISE; END IF; END;'
+url = eia.glbUrl + qry
+URL
+url
+r=requests.get(url,headers=h)
+r
+r.text
+qry = 'BEGIN EXECUTE IMMEDIATE "SELECT * FROM ALIASES"; EXCEPTION WHEN OTHERS THEN IF SQLCODE = -955 THEN RAISE; END IF; END;'
+url = eia.glbUrl + qry
+r=requests.get(url,headers=h)
+R
+r
+r.text
+qry = 'SELECT * FROM ALIASES'
+url = eia.glbUrl + qry
+url
+r=requests.get(url,headers=h)
+r
+url
+qry = '"SELECT * FROM ALIASES"'
+url = eia.glbUrl + qry
+r=requests.get(url,headers=h)
+r
+r.text
+qry = '"SELECT * FROM FOO"'
+url = eia.glbUrl + qry
+url
+r=requests.get(url,headers=h)
+r
+r.text
+r.json().values()
+r.json().values()[0]
+if not r.json().values()[0]:
+  print 'No values returned'
+qry = '"SELECT * FROM ALIASES WHERE ROWNUM > 1"'
+url = eia.glbUrl + qry
+r=requests.get(url,headers=h)
+R
+r
+r.text
+qry = '"SELECT * FROM ALIASES"'
+url = eia.glbUrl + qry
+r=requests.get(url,headers=h)
+r
+r.text
+qry = '"SELECT * FROM ALIASES WHERE ROWNUM > 2"'
+url = eia.glbUrl + qry
+r=requests.get(url,headers=h)
+R
+r
+r.text
+qry = '"SELECT * FROM ALIASES WHERE ROWNUM < 2"'
+url = eia.glbUrl + qry
+r=requests.get(url,headers=h)
+r
+r.text
+r.json()
+qry = '"SELECT * FROM ALIASES WHERE ROWNUM < 3"'
+url = eia.glbUrl + qry
+r=requests.get(url,headers=h)
+r
+r.text
+r.json()
+dir(re)
+dir
+sre
+dir()
+URL
+url
+reload(eia)
+eia.checkExists('FOO',h)
+h
+reload(eia)
+eia.checkExists('FOO',h)
+eia.checkExists('ALIASES',h)
+eia.checkExists("ALIASES",h)
+reload(eia)
+eia.checkExists("ALIASES",h)
+url
+print url
+eia.checkExists("ALIASES",h)
+print url
+r=requests.get(url,headers=h)
+r
+reload(eia)
+r=eia.checkExists("ALIASES",h)
+r
+r.text
+if not r.json().values()[0]:
+  print 'No values'
+else:
+  print _
+json.loads(re.sub(',\]',']',requests.get(url,headers=header).text))
+json.loads(re.sub(',\]',']',r.text))
+reload(eia)
+r=eia.checkExists("ALIASES",h)
+r
+r.text
+reload(eia)
+r=eia.checkExists("ALIASES",h)
+r=eia.checkExists("ALIASE",h)
+r=eia.checkExists("ALIASES",h)
+reload(eia)
+eia.checkExists("ALIASES",h)
+reload(eia)
+eia.checkExists("ALIASES",h)
+reload(eia)
+eia.checkExists("ALIASES",h)
+reload(eia)
+eia.checkExists("ALIASES",h)
+reload(eia)
+eia.checkExists("ALIASES",h)
+reload(eia)
+eia.checkExists("ALIASES",h)
+url
+isinstance(requests.get(url,headers=h),dict)
+isinstance(requests.get(url,headers=h).json(),dict)
+url = http://129.152.144.84:5001/rest/native/?query="SELECT * FROM ALIASES WHERE ROWNUM < 2"
+url = 'http://129.152.144.84:5001/rest/native/?query="SELECT * FROM ALIASES WHERE ROWNUM < 2"'
+isinstance(requests.get(url,headers=h).json(),dict)
+url = 'http://129.152.144.84:5001/rest/native/?query="SELECT * FROM ALIASE WHERE ROWNUM < 2"'
+isinstance(requests.get(url,headers=h).json(),dict)
+r=requests.get(url,headers=h)
+r
+r.text
+reload(eia)
+eia.glbQry
+reload(eia)
+eia.glbQry
+url
+eia.glbUrl
+url = eia.glbUrl + eia.glbQry
+url
+reload(eia)
+url = eia.glbUrl + eia.glbQry
+url
+r=requests.get(url,headers=h)
+reload(eia)
+url = eia.glbUrl + eia.glbQry
+url
+r=requests.get(url,headers=h)
+reload(eia)
+url = eia.glbUrl + eia.glbQry
+r=requests.get(url,headers=h)
+r
+r.text
+reload(eia)
+glbQry
+eia.glbQry
+reload(eia)
+eia.glbQry
+url
+url = eia.glbUrl + eia.glbQry + 'FOO'
+url
+requests.get(url,headers=h)
+_.text
+url
+reload(eia)
+eia.glbUrl
+url = eia.glbUrl + eia.glbQry
+url
+reload(eia)
+url = eia.glbUrl + eia.glbQry
+url
+url = url + 'FOO\"'
+url
+requests.get(url,headers=h)
+_.text
+url = url + 'ALIASES\"'
+url
+url = eia.glbUrl + eia.glbQry + '\"ALIASES\"'
+ur
+requests.get(url,headers=h)
+_.text
+eia.glbQry
+url = eia.glbUrl + eia.glbQry + '\'ALIASES\''
+url
+print url
+url = eia.glbUrl + eia.glbQry + '\'ALIASES\'\"'
+print url
+requests.get(url,headers=h)
+_.text
+readin[readin.values()[0]]
+readin[readin.values()[0]][0]
+readin
+readin[readin.keys()[0]].values()[0]
+readin[readin.keys()[0]]
+readin[readin.keys()[0]][0]
+readin[readin.keys()[0]][0].values()
+readin[readin.keys()[0]][0].values()[0]
+x
+eia.getSeries(x,tok,**{'start':'2015-05-12'})
+eia.getSeriesData(x,tok,**{'start':'2015-05-12'})
+_.text
+qry
+dir()
+url2
+url3
+readline.write_history_file('output/session.history')
+import readlin
+import readline
+readline.write_history_file('output/session.history')
