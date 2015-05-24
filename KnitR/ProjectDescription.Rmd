@@ -22,4 +22,4 @@ The primary tool is the **eia.py** module. This Python module contains methods f
 - **printDict(dictionary,sortVal)** *Prints out the contents of a dictionary in a nice format using OrderedDict from collections to sort the dict.*
 
 #####**In Development**
-- **updateTable(series_id,header)** *This will access the LAST_UPDATE table to determine the what data to retrieve from EIA. If no record exists, it will call checkExists and create the table if necessary. Otherwise it will pull all data and call insertRecords() to populate the data.*
+- **updateTable(series_id,header)** *This will access the LAST_UPDATE table to determine what data to retrieve from EIA. If no record exists, it will call checkExists() and create the table if necessary. Otherwise it will pull all data and call insertRecords() to populate the data.*

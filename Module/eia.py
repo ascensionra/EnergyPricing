@@ -161,6 +161,13 @@ table, then checkExists() is called. If that is false, createTable() is
 called, followed by getSeriesData() and insertRecords(). If true, all
 data is retrieved from EIA wirh getSeriesData() call and insertRecords(). """
 
+	try:
+		#return requests.get(url,headers=header)
+	except requests.exceptions.RequestException,e:
+		print 'The request failed: %s' % (e)
+	except BaseException, e:
+		print 'Unknown exception: %s' % (e)
+
 ##############################################################################
 def insertRecords(seriesJson,h):
 	""" Generate insert statements, and load data into table.
