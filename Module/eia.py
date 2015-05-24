@@ -195,7 +195,7 @@ Must supply headers as in createTable """
 
 ##############################################################################
 def setLastUpdated(date,series_id,series_name,h):
-	""" Prints JSON dictionary of a successful """
+	""" Updates the series entry in LAST_UPDATE with the most recent data value retrieved from EIA datastores. """
 	global glbUrl
 
 	try:
