@@ -69,22 +69,28 @@ img {
 </div>
 <div id="tools" class="section level4">
 <h4><strong>Tools</strong></h4>
-<p>The primary tools is the <strong>eia.py</strong> module. This Python module contains the primary methods for retrieving data from the EIA datastores, and interfacing with the Oracle database. The module relies mainly on the Python Requests module to perform its actions.</p>
+<p>The primary tool is the <strong>eia.py</strong> module. This Python module contains methods for retrieving data from the EIA datastores, and interfacing with the Oracle database. The module relies mainly on the Python Requests package to accomplish these tasks.</p>
 <div id="methods" class="section level5">
 <h5><strong>Methods</strong></h5>
 <ul>
 <li><strong>getSeriesData(ser,apiKey,**kwargs)</strong> <em>Retrieves data series from EIA datastores, and allows you to pass optional start and stop dates using **kwargs. Returns a Requests response object. See source for format, and EIA API doc for more information.</em></li>
 <li><strong>getAlias(series_id,header)</strong> <em>Returns the short alias for the series_id</em></li>
-<li><strong>checkExists(alias,header)</strong> <em>Checks if a table exists. Returns 1 if TRUE, -1 if FALSE.</em></li>
+<li><strong>checkExists(alias,header)</strong> <em>Checks if a table exists. Returns True or False.</em></li>
 <li><strong>createTable(series_id,header)</strong> <em>Creates a new table in the Oracle database. Nominally it would check for the table in the ALIASES database, and create a new alias based on a defined convention, since the series IDs can exceed 30 bytes, and contain illegal character. For now, it is up to the developer to insert a new alias into the table, and use an appropriate name.</em></li>
 <li><strong>dropTable(series_id,header)</strong> <em>Drops the table specified by series_id by retrieving the alias then submitting DROP statement</em></li>
 <li><strong>truncateTable(series_id,header)</strong> <em>Truncates the table specified by series_id</em></li>
-<li><strong>insertRecords(seriesJson,h)</strong> <em>Generates insert statements for the series_id contained in the provided JSON data. This data is returned by the getSeriesData() method. This information should be passed to this method like insertRecords(getSeriesData(foo,bar).json(),header). The getSeriesData() response object can be stored and the JSON element can be passed.</em></li>
+<li><strong>insertRecords(seriesJson,h)</strong> <em>Generates insert statements for the series_id contained in the provided JSON data. This data is returned by the getSeriesData() method. This information should be passed to this method like insertRecords(getSeriesData(foo,bar).json(),header). The getSeriesData() response object can be stored and the JSON element can be passed. After inserting all records, setLastUpdated()</em></li>
 <li><strong>getLastUpdated(series_id,header)</strong> <em>Returns the UPDATED field from the LAST_UPDATE table for the specified series_id (or alias.)</em></li>
 <li><strong>setLastUpdated(date,series_id,series_name,h)</strong> <em>Updated the series entry in LAST_UPDATE with the most recent data value retrieved from the EIA datastores.</em></li>
 <li><strong>printJson(response)</strong> <em>Prints JSON element of a successful Requests response object in a nice format.</em></li>
 <li><strong>writeJson(response,filename)</strong> <em>Writes JSON element of a successful Requests response object in a nice format to the specified file.</em></li>
 <li><strong>printDict(dictionary,sortVal)</strong> <em>Prints out the contents of a dictionary in a nice format using OrderedDict from collections to sort the dict.</em></li>
+</ul>
+</div>
+<div id="in-development" class="section level5">
+<h5><strong>In Development</strong></h5>
+<ul>
+<li><strong>updateTable(series_id,header)</strong> <em>This will access the LAST_UPDATE table to determine the what data to retrieve from EIA. If no record exists, it will call checkExists and create the table if necessary. Otherwise it will pull all data and call insertRecords() to populate the data.</em></li>
 </ul>
 </div>
 </div>

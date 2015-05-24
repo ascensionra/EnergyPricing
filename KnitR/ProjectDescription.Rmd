@@ -5,7 +5,7 @@ Energy Pricing data project
 I started this project with the intention of compiling a large dataset for analyzing energy prices (petroleum products, coal, NG, electricity, etc,) but it seemed redundant to do that since the EIA already maintains all of that data. The focus shifted to creating tools to access this data using the EIA API and store it in an Oracle database for analysis, using a RESTful interface to insert/retrieve data and update some metadata. An API for the API, if you will. See the file README.md in the root for more information about the EIA API and the module.
 
 ####**Tools**
-The primary tools is the **eia.py** module. This Python module contains the primary methods for retrieving data from the EIA datastores, and interfacing with the Oracle database. The module relies mainly on the Python Requests module to perform its actions.
+The primary tool is the **eia.py** module. This Python module contains methods for retrieving data from the EIA datastores, and interfacing with the Oracle database. The module relies mainly on the Python Requests package to accomplish these tasks.
 
 #####**Methods**
 - **getSeriesData(ser,apiKey,\*\*kwargs)** *Retrieves data series from EIA datastores, and allows you to pass optional start and stop dates using \*\*kwargs. Returns a Requests response object. See source for format, and EIA API doc for more information.*
@@ -14,9 +14,12 @@ The primary tools is the **eia.py** module. This Python module contains the prim
 - **createTable(series_id,header)** *Creates a new table in the Oracle database. Nominally it would check for the table in the ALIASES database, and create a new alias based on a defined convention, since the series IDs can exceed 30 bytes, and contain illegal character. For now, it is up to the developer to insert a new alias into the table, and use an appropriate name.*
 - **dropTable(series_id,header)** *Drops the table specified by series_id by retrieving the alias then submitting DROP statement*
 - **truncateTable(series_id,header)** *Truncates the table specified by series_id*
-- **insertRecords(seriesJson,h)** *Generates insert statements for the series_id contained in the provided JSON data. This data is returned by the getSeriesData() method. This information should be passed to this method like insertRecords(getSeriesData(foo,bar).json(),header). The getSeriesData() response object can be stored and the JSON element can be passed.*
+- **insertRecords(seriesJson,h)** *Generates insert statements for the series_id contained in the provided JSON data. This data is returned by the getSeriesData() method. This information should be passed to this method like insertRecords(getSeriesData(foo,bar).json(),header). The getSeriesData() response object can be stored and the JSON element can be passed. After inserting all records, setLastUpdated()*
 - **getLastUpdated(series_id,header)** *Returns the UPDATED field from the LAST_UPDATE table for the specified series_id (or alias.)*
 - **setLastUpdated(date,series_id,series_name,h)** *Updated the series entry in LAST_UPDATE with the most recent data value retrieved from the EIA datastores.*
 - **printJson(response)** *Prints JSON element of a successful Requests response object in a nice format.*
 - **writeJson(response,filename)** *Writes JSON element of a successful Requests response object in a nice format to the specified file.*
 - **printDict(dictionary,sortVal)** *Prints out the contents of a dictionary in a nice format using OrderedDict from collections to sort the dict.*
+
+#####**In Development**
+- **updateTable(series_id,header)** *This will access the LAST_UPDATE table to determine the what data to retrieve from EIA. If no record exists, it will call checkExists and create the table if necessary. Otherwise it will pull all data and call insertRecords() to populate the data.*
