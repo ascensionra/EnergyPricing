@@ -20,3 +20,7 @@ pPullData.py
 
 # MODULE COMPILATIONS
 *.pyc
+
+# R files
+*.Rproj
+.Rproj.user
