@@ -31,7 +31,7 @@ passed to the query. """
 
 	try:
 	 #return requests.get(url).json()
-	 return requests.get(url)
+		return requests.get(url)
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
 	except BaseException, e:
@@ -162,7 +162,7 @@ called, followed by getSeriesData() and insertRecords(). If true, all
 data is retrieved from EIA wirh getSeriesData() call and insertRecords(). """
 
 	try:
-		#return requests.get(url,headers=header)
+		return requests.get(url,headers=header)
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
 	except BaseException, e:
@@ -212,15 +212,21 @@ Must supply headers as in createTable """
 
 ##############################################################################
 def setLastUpdated(date,series_id,series_name,h):
-	""" Updates the series entry in LAST_UPDATE with the most recent data value retrieved from EIA datastores. """
+	""" Updates the series entry in LAST_UPDATE with the most recent data value retrieved from EIA datastores.
+Returns Requests response object. """
 	global glbUrl
 
 	try:
-		qry = '"INSERT INTO LAST_UPDATE (SERIES,SERIES_NAME,UPDATED) VALUES (\'%s\',\'%s\',TO_DATE(\'%s\',\'yyyymmdd\'))"' \
-			% (series_id,series_name,date)
-		url = glbUrl + qry
-		#print "Updating LAST_UPDATE for %s \n using URL: %s" % ( seriesJson['series'][0]['series_id'],url2 )
-		requests.get(url,headers=h)	
+		if (getLastUpdated(series_id,h) is None):
+			qry = '"INSERT INTO LAST_UPDATE (SERIES,SERIES_NAME,UPDATED) VALUES (\'%s\',\'%s\',TO_DATE(\'%s\',\'yyyymmdd\'))"' \
+				% (series_id,series_name,date)
+			url = glbUrl + qry
+			#print "Updating LAST_UPDATE for %s \n using URL: %s" % ( seriesJson['series'][0]['series_id'],url2 )
+			return requests.get(url,headers=h)
+		else:
+			qry = '"UPDATE LAST_UPDATE SET UPDATED = ' + date + ' WHERE SERIES = \'' + series_id + '\'"'
+			url = glbUrl + qry
+			return requests.get(url,headers=h)
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
 	except BaseException,e:
@@ -235,8 +241,10 @@ def getLastUpdated(series_id,header):
 		qry = '"SELECT UPDATED FROM LAST_UPDATE WHERE SERIES = \'' + series_id + '\'"'
 		url = glbUrl + qry
 		s = json.loads(re.sub(',\]',']',requests.get(url,headers=header).text))
-		return str(s['UPDATED'][0])
-		#return requests.get(url,headers=header)
+		if not s['UPDATED']:
+			return None
+		else:
+			return s['UPDATED'][0].split(" ")[0]
  	except requests.exceptions.RequestException,e:
  		print 'The request failed: %s' % (e) 
 	except BaseException,e:
