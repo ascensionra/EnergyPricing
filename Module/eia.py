@@ -80,7 +80,6 @@ and keeps names (nominally) under 30 bytes """
 
 	try:	
 		s = json.loads(re.sub(',\]',']',requests.get(url,headers=header).text))
-#		printDict(s,'k')
 		return str(s['ALIAS'][0])
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
@@ -206,6 +205,22 @@ def setLastUpdated(date,series_id,series_name,h):
 		requests.get(url,headers=h)	
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
+	except BaseException,e:
+		print 'Unexpected exception: %s' % (e)
+
+##############################################################################
+def getLastUpdated(series_id,header):
+	""" Retrieves last updated value from LAST_UPDATE for the specified series. """
+	global glbUrl
+
+	try:
+		qry = '"SELECT UPDATED FROM LAST_UPDATE WHERE SERIES = \'' + series_id + '\'"'
+		url = glbUrl + qry
+		s = json.loads(re.sub(',\]',']',requests.get(url,headers=header).text))
+		return str(s['UPDATED'][0])
+		#return requests.get(url,headers=header)
+ 	except requests.exceptions.RequestException,e:
+ 		print 'The request failed: %s' % (e) 
 	except BaseException,e:
 		print 'Unexpected exception: %s' % (e)
 
