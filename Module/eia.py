@@ -154,6 +154,14 @@ Header with connection information will need to be provided. See example. """
 		print 'Unknown exception: %s' % (e)
 
 ##############################################################################
+def updateTable(series_id,header):
+	""" This method check LAST_UPDATE for the series_id and returns the date
+of the last data point entered into database. If series_id is not in the
+table, then checkExists() is called. If that is false, createTable() is
+called, followed by getSeriesData() and insertRecords(). If true, all
+data is retrieved from EIA wirh getSeriesData() call and insertRecords(). """
+
+##############################################################################
 def insertRecords(seriesJson,h):
 	""" Generate insert statements, and load data into table.
 Must supply headers as in createTable """
