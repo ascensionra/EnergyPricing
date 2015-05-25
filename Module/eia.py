@@ -157,7 +157,7 @@ Header with connection information will need to be provided. See example. """
 
 ##############################################################################
 def updateTable(series_id,header):
-	""" This method check LAST_UPDATE for the series_id and returns the date
+	""" This method checks LAST_UPDATE for the series_id and returns the date
 of the last data point entered into database. If series_id is not in the
 table, then checkExists() is called. If that is false, createTable() is
 called, followed by getSeriesData() and insertRecords(). If true, all
@@ -188,8 +188,8 @@ Must supply headers as in createTable """
 			series_name = seriesJson['series'][0]['name']
 			alias = getAlias(series_id,h)
 			
-			print "Processing %s" % (series_id)
-			print "\tAlias for %s: %s" % (series_id,alias)
+			#print "Processing %s" % (series_id)
+			#print "\tAlias for %s: %s" % (series_id,alias)
 			
 			qry = '"""INSERT INTO %s (PRICE_DATE,PRICE) VALUES (TO_DATE(\'%s\',\'yyyymmdd\'),TO_NUMBER(\'%s\'))"""' \
 				% (alias,i[0],i[1])#,seriesJson['series'][0]['series_id'])
@@ -198,11 +198,12 @@ Must supply headers as in createTable """
 				newestDate = i[0]
 			url = glbUrl + qry
 			
-			print "\tInserting %s, %s\t\t%d\n\tUsing URL %s" % (i[0],i[1],count,url)
+			#print "\tInserting %s, %s\t\t%d\n\tUsing URL %s" % (i[0],i[1],count,url)
 			print requests.get(url,headers=h)
 			#if count > 10: 
 			#	break
 		setLastUpdated(newestDate,series_id,series_name,h)
+		glbCount = 0
 
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
