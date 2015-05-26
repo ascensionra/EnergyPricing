@@ -41,4 +41,9 @@ for i in readin:
 
 
 #####**In Development**
+<<<<<<< HEAD
+=======
+- **updateTable(series_id,header)** *This will access the LAST_UPDATE table to determine what data to retrieve from EIA. If no record exists, it will call checkExists() and create the table if necessary. Otherwise it will pull all data and call insertRecords() to populate the data.*
+- **deleteRecords(table,conditions,header)** *Accepts a list of conditions to delete from the specified table*
+>>>>>>> 4ca117037e3167aae89dc32f9087dfc40e82f7e3
 - **[drop|truncate]Table()** *Will be adding a section to remove entry from LAST_UDATE in the event a table is DROPped or TRUNCATEd. In the case of a DROP, the ALIASES table will also be updated.*

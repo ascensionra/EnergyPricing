@@ -81,7 +81,7 @@ img {
 <li><strong>truncateTable(series_id,header)</strong> <em>Truncates the table specified by series_id</em></li>
 <li><strong>insertRecords(seriesJson,h)</strong> <em>Generates insert statements for the series_id contained in the provided JSON data. This data is returned by the getSeriesData() method. This information should be passed to this method like insertRecords(getSeriesData(foo,bar).json(),header). The getSeriesData() response object can be stored and the JSON element can be passed. After inserting all records, setLastUpdated()</em></li>
 <li><strong>getLastUpdated(series_id,header)</strong> <em>Returns the UPDATED field from the LAST_UPDATE table for the specified series_id (or alias.)</em></li>
-<li><strong>setLastUpdated(date,series_id,series_name,h)</strong> <em>Updated the series entry in LAST_UPDATE with the most recent data value retrieved from the EIA datastores.</em></li>
+<li><strong>setLastUpdated(date,series_id,series_name,h)</strong> <em>Updated the series entry in LAST_UPDATE with the most recent data value retrieved from the EIA datastores. If there is an attempt to update the record for a non-existent table, <strong>None</strong> is returned.</em></li>
 <li><strong>printJson(response)</strong> <em>Prints JSON element of a successful Requests response object in a nice format.</em></li>
 <li><strong>writeJson(response,filename)</strong> <em>Writes JSON element of a successful Requests response object in a nice format to the specified file.</em></li>
 <li><strong>printDict(dictionary,sortVal)</strong> <em>Prints out the contents of a dictionary in a nice format using OrderedDict from collections to sort the dict.</em></li>
@@ -91,6 +91,8 @@ img {
 <h5><strong>In Development</strong></h5>
 <ul>
 <li><strong>updateTable(series_id,header)</strong> <em>This will access the LAST_UPDATE table to determine what data to retrieve from EIA. If no record exists, it will call checkExists() and create the table if necessary. Otherwise it will pull all data and call insertRecords() to populate the data.</em></li>
+<li><strong>deleteRecords(table,conditions,header)</strong> <em>Accepts a list of conditions to delete from the specified table</em></li>
+<li><strong>[drop|truncate]Table()</strong> <em>Will be adding a section to remove entry from LAST_UDATE in the event a table is DROPped or TRUNCATEd. In the case of a DROP, the ALIASES table will also be updated.</em></li>
 </ul>
 </div>
 </div>
