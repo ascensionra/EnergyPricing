@@ -53,13 +53,17 @@ information will need to be provided. See example. """
 	global glbUrl
 	global glbCount
 	#print '*****************************************************************'
-	alias = getAlias(series_id,header)  
-	url = glbUrl + '\'CREATE TABLE ' + alias + ' (PRICE_DATE DATE NOT NULL, PRICE NUMBER (12,3) )\'' 
 	try:
-		return requests.get(url,headers=header)
+		alias = getAlias(series_id,header)  
+		if alias is None:
+			return
+		url = glbUrl + '\'CREATE TABLE ' + alias + ' (PRICE_DATE DATE NOT NULL, PRICE NUMBER (12,3) )\'' 
+		r=requests.get(url,headers=header)
+		if (r.json().values()[0] == []):
+			print r.text
+			return None
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
-		print('Reason: ', e.reason)
 	except BaseException, e:
 		print 'Unexpected error: %s' % (e)
 
@@ -79,10 +83,12 @@ and keeps names (nominally) under 30 bytes """
 #			return None
 		r = requests.get(url,headers=header)
 		s = json.loads(re.sub(regex,']',r.text))
+		#if (r.json().values()[0] == []):
+		#	print r.text
+		#	return None
 		return str(s['ALIAS'][0])
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
-		print('Reason: ', e.reason)
 	except BaseException, e:
 		print 'Unexpected error: %s' % (e)
 
@@ -97,6 +103,8 @@ def checkExists(alias,header):
 
 	try: 
 		r = requests.get(url,headers=header)
+		if not r.status_code == 200:
+			return False
 		s = json.loads(re.sub(regex,']',r.text))
 		if (s['COUNT(1)'][0] > 0):
 			return True
@@ -104,7 +112,6 @@ def checkExists(alias,header):
 			return False 
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
-		print('Reason: ', e.reason)
 	except BaseException, e:
 		print 'Unexpected error: %s' % (e)
 
@@ -161,7 +168,8 @@ create the relevant parameter for calling a limited dataset in updateTable()
 	try:
 		date = dt.datetime.strptime(date,'%Y-%m-%d')
 		delta = dt.timedelta(days=1)
-		return str((date+delta).date())
+		newdate = (str((date+delta).date())).split("-")
+		return (newdate[0]+newdate[1]+newdate[2])
 	except BaseException,e:
 		print 'Unexpected exception: %s' % (e)
 
@@ -183,16 +191,28 @@ data is retrieved from EIA wirh getSeriesData() call and insertRecords(). """
 				ra = series_id.split(".")		# Split up the long series name
 				alias = ra[1]+ra[-1]		# Create new alias
 				print 'No alias for %s, created %s' % (series_id,alias)
+			"""
 			if (not checkExists(alias,header)):	# See if table exists despite missing alias
 				print 'Creating table %s' % (alias)
-				createTable(alias,header) # Create a table if not 
-			data = getSeriesData(series_id,tok)
-			return insertRecords(data.json(),header)
+				r = createTable(alias,header) # Create a table if not 
+				if r is None:
+					return
+			"""
+			print checkExists(alias,header)
+			if checkExists(alias,header):
+				data = getSeriesData(series_id,tok)
+				insertRecords(data.json(),header)
+			else:
+				print 'No table exists for %s' % (alias)
 		else:
 			print 'Last update for %s: %s' % (series_id,lastUpdate)
 			newdate = dateAdd(lastUpdate)
+			print 'Getting data since %s' % (newdate)
 			data = getSeriesData(series_id,tok,**{'start':newdate})
-			return insertRecords(data,header)
+			if (data.json()['series'][0]['data'] == []):
+				print 'Nothing to update'
+				return
+			insertRecords(data.json(),header)
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
 	except BaseException, e:
@@ -204,49 +224,36 @@ def insertRecords(seriesJson,h):
 Must supply headers as in createTable """
 
 	global glbUrl
-	global glbCount
 	newestDate = None
 	count = 0
 
 	try:
 		for i in seriesJson['series'][0]['data']:
-			count += 1 # for debugging
-			glbCount += 1
 			series_id = seriesJson['series'][0]['series_id']
 			series_name = seriesJson['series'][0]['name']
 			alias = getAlias(series_id,h)
-			
 			#print "Processing %s" % (series_id)
 			#print "\tAlias for %s: %s" % (series_id,alias)
-			
 			qry = '"""INSERT INTO %s (PRICE_DATE,PRICE) VALUES (TO_DATE(\'%s\',\'yyyymmdd\'),TO_NUMBER(\'%s\'))"""' \
-				% (alias,i[0],i[1])#,seriesJson['series'][0]['series_id'])
-			
+				% (alias,i[0],i[1])
 			if ( i[0] > newestDate ):
 				newestDate = i[0]
 			url = glbUrl + qry
-			
+			count += 1
 			print "\tInserting %s, %s into %s\t\t%d" % (i[0],i[1],alias,count)
 			requests.get(url,headers=h)
-			#if count > 10: 
-			#	break
 		setLastUpdated(newestDate,series_id,series_name,h)
-		glbCount = 0
-
+		count = 0
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
 	except BaseException,e:
 		print 'Unexpected error: %s' % (e)
 		return
-	finally:
-		return glbCount
 
 ##############################################################################
 def deleteRecords(table,conditions,h):
 	""" Will remove records from specified table that match the conditions specified. Accepts conditions as a dictionary. """
 	global glbUrl
-
-	#qry = '"DELETE FROM %s WHERE %s = %s"' % (table,conditions.keys()[0],conditions.keys()[0][i])
 
 	try:
 		for i in conditions:
@@ -256,6 +263,25 @@ def deleteRecords(table,conditions,h):
 				return requests.get(url,headers=h)
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
+	except BaseException,e:
+		print 'Unexpected exception: %s' % (e)
+
+##############################################################################
+def getLastUpdated(series_id,header):
+	""" Retrieves last updated value from LAST_UPDATE for the specified series. """
+	global glbUrl
+
+	try:
+		qry = '"SELECT UPDATED FROM LAST_UPDATE WHERE SERIES = \'' + series_id + '\'"'
+		url = glbUrl + qry
+		r = requests.get(url,headers=header)
+		s = json.loads(re.sub(',\]',']',r.text))
+		if not s['UPDATED']:
+			return None
+		else:
+			return s['UPDATED'][0].split(" ")[0]
+ 	except requests.exceptions.RequestException,e:
+ 		print 'The request failed: %s' % (e) 
 	except BaseException,e:
 		print 'Unexpected exception: %s' % (e)
 
@@ -273,30 +299,12 @@ Returns Requests response object. """
 				% (series_id,series_name,date)
 			url = glbUrl + qry
 			return requests.get(url,headers=h)
-		else:										# If an entry exists, update it
+		else:		# If an entry exists, update it
 			qry = '"UPDATE LAST_UPDATE SET UPDATED = TO_DATE(\'%s\',\'yyyy-mm-dd\') WHERE SERIES = \'%s\'"' % (date,series_id)
 			url = glbUrl + qry
 			return requests.get(url,headers=h)
 	except requests.exceptions.RequestException,e:
 		print 'The request failed: %s' % (e)
-	except BaseException,e:
-		print 'Unexpected exception: %s' % (e)
-
-##############################################################################
-def getLastUpdated(series_id,header):
-	""" Retrieves last updated value from LAST_UPDATE for the specified series. """
-	global glbUrl
-
-	try:
-		qry = '"SELECT UPDATED FROM LAST_UPDATE WHERE SERIES = \'' + series_id + '\'"'
-		url = glbUrl + qry
-		s = json.loads(re.sub(',\]',']',requests.get(url,headers=header).text))
-		if not s['UPDATED']:
-			return None
-		else:
-			return s['UPDATED'][0].split(" ")[0]
- 	except requests.exceptions.RequestException,e:
- 		print 'The request failed: %s' % (e) 
 	except BaseException,e:
 		print 'Unexpected exception: %s' % (e)
 
@@ -319,7 +327,6 @@ def writeJson(response,filename):
 	""" Writes JSON dictionary of a successful
 response in a nice format to a file """
 	try:
-			
 		with open(filename,'w') as f:
 			if (isinstance(response,dict)):
 				f.write(json.dumps(response, sort_keys=True, indent=4, separators=(',', ': ')))
@@ -347,5 +354,4 @@ using OrderedDict from collections to sort the dict."""
 
 ##############################################################################
 if __name__ == '__main__':
-	#print "Please don't try to run me"
 	exit
