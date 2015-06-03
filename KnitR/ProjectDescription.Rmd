@@ -7,21 +7,43 @@ I started this project with the intention of compiling a large dataset for analy
 ####**Tools**
 The primary tool is the **eia.py** module. This Python module contains methods for retrieving data from the EIA datastores, and interfacing with the Oracle database. The module relies mainly on the Python Requests package to accomplish these tasks.
 
+The **series.py** "module" provides several methods for accessing categories and series in bulk from the EIA API. This can be used to generate large JSON output for later processing. In the /Module/output folder are two JSON files (ending in .series) that were created using the *use case* described in the code comments. The data can be loaded and parsed in bulk. This was the method for populating all of the current database tables:
+```
+import os
+readin = {}
+for i in os.listdir('relative/path/to/output'):
+  with open('relative/path/to/output/'+i,'r') as f:
+    readin[i.split(".")[0]] = json.load(f)
+    
+for i in readin:
+  for j in readin[i]:
+    eia.updateTable(j.values()[0],header)
+```
+
 #####**Methods**
 - **getSeriesData(ser,apiKey,\*\*kwargs)** *Retrieves data series from EIA datastores, and allows you to pass optional start and stop dates using \*\*kwargs. Returns a Requests response object. See source for format, and EIA API doc for more information.*
-- **getAlias(series_id,header)** *Returns the short alias for the series_id*
+- **getAlias(series_id,header)** *Returns the short alias for the series_id from the ALIASES table*
 - **checkExists(alias,header)** *Checks if a table exists. Returns True or False.*
 - **createTable(series_id,header)** *Creates a new table in the Oracle database. Nominally it would check for the table in the ALIASES database, and create a new alias based on a defined convention, since the series IDs can exceed 30 bytes, and contain illegal character. For now, it is up to the developer to insert a new alias into the table, and use an appropriate name.*
 - **dropTable(series_id,header)** *Drops the table specified by series_id by retrieving the alias then submitting DROP statement*
 - **truncateTable(series_id,header)** *Truncates the table specified by series_id*
+- **updateTable(series_id,header)** ***This is the primary method for adding data to the database, either as an update, or a fresh data series.** This will access the LAST_UPDATE table to determine what data to retrieve from EIA. If no record exists, it will call checkExists() and create the table if necessary. Otherwise it will pull all data and call insertRecords() to populate the data.*
 - **insertRecords(seriesJson,h)** *Generates insert statements for the series_id contained in the provided JSON data. This data is returned by the getSeriesData() method. This information should be passed to this method like insertRecords(getSeriesData(foo,bar).json(),header). The getSeriesData() response object can be stored and the JSON element can be passed. After inserting all records, setLastUpdated()*
+- **deleteRecords(table,conditions,header)** *Accepts a list of conditions to delete from the specified table*
 - **getLastUpdated(series_id,header)** *Returns the UPDATED field from the LAST_UPDATE table for the specified series_id (or alias.)*
 - **setLastUpdated(date,series_id,series_name,h)** *Updated the series entry in LAST_UPDATE with the most recent data value retrieved from the EIA datastores. If there is an attempt to update the record for a non-existent table, **None** is returned.*
 - **printJson(response)** *Prints JSON element of a successful Requests response object in a nice format.*
 - **writeJson(response,filename)** *Writes JSON element of a successful Requests response object in a nice format to the specified file.*
 - **printDict(dictionary,sortVal)** *Prints out the contents of a dictionary in a nice format using OrderedDict from collections to sort the dict.*
 
+
+
+
+
 #####**In Development**
+<<<<<<< HEAD
+=======
 - **updateTable(series_id,header)** *This will access the LAST_UPDATE table to determine what data to retrieve from EIA. If no record exists, it will call checkExists() and create the table if necessary. Otherwise it will pull all data and call insertRecords() to populate the data.*
 - **deleteRecords(table,conditions,header)** *Accepts a list of conditions to delete from the specified table*
+>>>>>>> 4ca117037e3167aae89dc32f9087dfc40e82f7e3
 - **[drop|truncate]Table()** *Will be adding a section to remove entry from LAST_UDATE in the event a table is DROPped or TRUNCATEd. In the case of a DROP, the ALIASES table will also be updated.*
